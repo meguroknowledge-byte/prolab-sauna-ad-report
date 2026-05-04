@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Prolab Sauna Ad Report",
+  "schemaVersion": 1,
+  "description": "プロラボサウナ 朝サウナ施策レポート - 施策全体と広告経由を分けて表示、全期間サマリー、目標対比（売上100万・157件）"
+}
+</script>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プロラボサウナ 朝サウナ施策レポート</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+<style>
+:root{color-scheme:light}*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Yu Gothic UI',sans-serif;background:#f0f2f5;color:#111;font-size:13px}
+.header{background:linear-gradient(135deg,#0f0f0f,#1a0a00);color:#fff;padding:16px 18px 14px;border-bottom:2px solid #f97316}
+.header-title{font-size:17px;font-weight:800}
+.header-sub{font-size:11px;color:#888;margin-top:3px}
+.tab-strip{display:none}
+.tab-btn{display:none}
+.tab-btn.active{display:none}
+.content{padding:12px 12px 24px}
+.sl{font-size:10px;font-weight:700;color:#999;letter-spacing:.8px;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid #e8e8e8}
+.card{background:#fff;border-radius:12px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:8px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.kc{background:#fff;border-radius:12px;padding:12px 10px;box-shadow:0 1px 3px rgba(0,0,0,.08);text-align:center}
+.kl{font-size:9px;color:#999;margin-bottom:5px}
+.kn{font-size:18px;font-weight:800;line-height:1}
+.kn.sm{font-size:14px}
+.kn.xs{font-size:12px}
+.kh{font-size:9px;color:#ccc;margin-top:2px}
+.or{color:#f97316}.gr{color:#16a34a}.rd{color:#dc2626}.bl{color:#3b82f6}
+.tc{background:#fff;border-radius:12px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.tl{font-size:10px;color:#999;margin-bottom:8px}
+.tp{font-size:26px;font-weight:800;line-height:1;margin-bottom:4px}
+.tbw{height:6px;background:#f0f0f0;border-radius:3px;overflow:hidden;margin:6px 0}
+.tbf{height:100%;border-radius:3px}
+.td{font-size:10px;color:#aaa;display:flex;justify-content:space-between}
+.rr{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f5f5f5;font-size:12px}
+.rr:last-child{border-bottom:none}
+.rr.tot{border-top:1.5px solid #e5e5e5;border-bottom:none;margin-top:4px}
+/* LP */
+.lpc{background:linear-gradient(135deg,#0f0f0f,#1a0a00);border-radius:12px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.2);margin-bottom:8px;display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+.lpi{width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,#f97316,#dc2626);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.lpin{flex:1;min-width:0}
+.lpt{font-size:12px;font-weight:700;color:#fff;margin-bottom:3px}
+.lpu{font-size:9px;color:#888;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lpb{font-size:9px;background:rgba(249,115,22,.2);color:#f97316;border-radius:4px;padding:2px 6px;margin-top:4px;display:inline-block;font-weight:600}
+.lpa{color:#f97316;font-size:18px;flex-shrink:0}
+.mb{display:inline-block;background:#111;color:#fff;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:700;margin-bottom:14px}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.nb{background:#fff;border-left:3px solid #f97316;border-radius:0 10px 10px 0;padding:10px 14px;font-size:11px;color:#555;line-height:1.8;margin-bottom:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.upd{font-size:10px;color:#ccc;text-align:right;margin-top:12px}
+.chart-card{background:#fff;border-radius:12px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:8px}
+.chart-title{font-size:11px;font-weight:700;color:#555;margin-bottom:12px}
+/* Hero reservation top */
+.hero{background:linear-gradient(135deg,#0f0f0f,#1a0a00);border-radius:14px;padding:16px 14px;margin-bottom:8px;color:#fff}
+.hero-row{display:flex;gap:0;align-items:stretch}
+.hero-block{flex:1;text-align:center;padding:8px 6px;position:relative}
+.hero-block+.hero-block::before{content:'';position:absolute;left:0;top:10%;height:80%;width:1px;background:rgba(255,255,255,.1)}
+.hero-label{font-size:9px;color:#888;margin-bottom:4px;letter-spacing:.5px}
+.hero-num{font-size:34px;font-weight:900;line-height:1}
+.hero-unit{font-size:11px;font-weight:700;margin-left:1px}
+.hero-sub{font-size:9px;margin-top:3px}
+/* Month big cards */
+.mhc{background:linear-gradient(135deg,#fff8f0,#fff);border:1.5px solid #f97316;border-radius:12px;padding:16px;margin-bottom:8px}
+.mhc .month-label{font-size:10px;color:#f97316;font-weight:700;margin-bottom:6px}
+.mhc .big-num{font-size:52px;font-weight:900;color:#f97316;line-height:1}
+.mhc .big-unit{font-size:16px;font-weight:700;color:#f97316}
+.mhc .sub{font-size:10px;color:#aaa;margin-top:6px;line-height:1.6}
+.mhc2{background:linear-gradient(135deg,#f0f7ff,#fff);border:1.5px solid #3b82f6;border-radius:12px;padding:16px;margin-bottom:8px}
+.mhc2 .month-label{font-size:10px;color:#3b82f6;font-weight:700;margin-bottom:6px}
+.mhc2 .big-num{font-size:52px;font-weight:900;color:#3b82f6;line-height:1}
+.mhc2 .big-unit{font-size:16px;font-weight:700;color:#3b82f6}
+.mhc2 .sub{font-size:10px;color:#aaa;margin-top:6px;line-height:1.6}
+.stat-row{display:flex;gap:8px;margin-top:10px}
+.stat-chip{background:#fff;border-radius:8px;padding:8px 10px;flex:1;box-shadow:0 1px 3px rgba(0,0,0,.07);text-align:center}
+.stat-chip .sc-n{font-size:15px;font-weight:800}
+.stat-chip .sc-l{font-size:9px;color:#aaa;margin-top:2px}
+/* Dual card */
+.dual-card{background:#fff;border-radius:12px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);margin-bottom:8px}
+.dual-card .dc-label{font-size:10px;color:#999;margin-bottom:8px;font-weight:700}
+.dual-row{display:flex;gap:8px}
+.dual-block{flex:1;background:#f9f9f9;border-radius:8px;padding:10px;text-align:center}
+.dual-block .db-l{font-size:9px;color:#aaa;margin-bottom:4px}
+.dual-block .db-n{font-size:20px;font-weight:900;line-height:1}
+.dual-block .db-u{font-size:9px;font-weight:600}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-title">🧖 プロラボサウナ 朝サウナ施策レポート</div>
+  <div class="header-sub">2026年2月26日〜4月30日 ／ Meta広告運用</div>
+</div>
+<div class="tab-strip"></div>
+<div class="content">
+<!-- ===== 全期間タブ ===== -->
+<div class="tab-pane active" id="tab-all">
+  <div class="mb">施策全期間（2/26〜4/30）</div>
+
+  <!-- ① 予約数 最上部 -->
+  <div class="hero">
+    <div style="font-size:9px;color:#888;margin-bottom:10px;letter-spacing:.8px;font-weight:700">予約数</div>
+    <div class="hero-row">
+      <div class="hero-block">
+        <div class="hero-label">朝サウナ広告経由</div>
+        <div><span class="hero-num" style="color:#f97316">129</span><span class="hero-unit" style="color:#f97316">件</span></div>
+        <div class="hero-sub" style="color:#888">3月75＋4月54</div>
+      </div>
+      <div class="hero-block">
+        <div class="hero-label">広告経由会員LTV</div>
+        <div><span class="hero-num" style="color:#16a34a">22</span><span class="hero-unit" style="color:#16a34a">件</span></div>
+        <div class="hero-sub" style="color:#888">会員利用LTV</div>
+      </div>
+      <div class="hero-block">
+        <div class="hero-label">朝サウナ施策全体</div>
+        <div><span class="hero-num" style="color:#fff">146</span><span class="hero-unit" style="color:#888">件</span></div>
+        <div class="hero-sub" style="color:#888">スプシ進捗表ベース</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② 全体施策KPI（スプシ集計） -->
+  <div class="sl">全体施策KPI（スプシ集計）</div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <!-- ヘッダ行 -->
+    <div style="display:grid;grid-template-columns:1fr 80px 80px 70px;gap:0;background:#f9f9f9;border-bottom:1px solid #f0f0f0;padding:7px 12px;font-size:9px;font-weight:700;color:#aaa;letter-spacing:.5px">
+      <span>項目</span><span style="text-align:right">現在進捗</span><span style="text-align:right">目標</span><span style="text-align:right">達成率</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 80px 80px 70px;padding:9px 12px;border-bottom:1px solid #f8f8f8;align-items:center">
+      <span style="font-size:11px;color:#555">朝サウナ予約合計数</span>
+      <span style="text-align:right;font-size:13px;font-weight:800;color:#f97316">146件</span>
+      <span style="text-align:right;font-size:11px;color:#aaa">157件</span>
+      <span style="text-align:right;font-size:12px;font-weight:700;color:#f97316">92.99%</span>
+    </div>
+    <div style="padding:0 12px 6px"><div style="height:4px;background:#f0f0f0;border-radius:2px;overflow:hidden"><div style="width:93%;height:100%;background:#f97316;border-radius:2px"></div></div></div>
+    <div style="display:grid;grid-template-columns:1fr 80px 80px 70px;padding:9px 12px;border-bottom:1px solid #f8f8f8;align-items:center">
+      <span style="font-size:11px;color:#555">予約売上</span>
+      <span style="text-align:right;font-size:13px;font-weight:800;color:#16a34a">¥1,017,945</span>
+      <span style="text-align:right;font-size:11px;color:#aaa">¥1,000,000</span>
+      <span style="text-align:right;font-size:12px;font-weight:700;color:#16a34a">101.79%</span>
+    </div>
+    <div style="padding:0 12px 6px"><div style="height:4px;background:#f0f0f0;border-radius:2px;overflow:hidden"><div style="width:100%;height:100%;background:linear-gradient(90deg,#16a34a,#22c55e);border-radius:2px"></div></div></div>
+    <div style="display:grid;grid-template-columns:1fr 80px 80px 70px;padding:9px 12px;border-bottom:1px solid #f8f8f8;align-items:center">
+      <span style="font-size:11px;color:#555">広告費</span>
+      <span style="text-align:right;font-size:13px;font-weight:800;color:#555">¥445,953</span>
+      <span style="text-align:right;font-size:11px;color:#aaa">—</span>
+      <span style="text-align:right;font-size:11px;color:#888">—</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 80px 80px 70px;padding:9px 12px;border-bottom:1px solid #f8f8f8;align-items:center">
+      <span style="font-size:11px;color:#555">粗利</span>
+      <span style="text-align:right;font-size:13px;font-weight:800;color:#3b82f6">¥571,992</span>
+      <span style="text-align:right;font-size:11px;color:#aaa">¥664,000</span>
+      <span style="text-align:right;font-size:11px;color:#888">86.1%</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 80px 80px 70px;padding:9px 12px;border-bottom:1px solid #f8f8f8;align-items:center">
+      <span style="font-size:11px;color:#555">CPA</span>
+      <span style="text-align:right;font-size:13px;font-weight:800;color:#f97316">¥3,054</span>
+      <span style="text-align:right;font-size:11px;color:#aaa">¥2,140</span>
+      <span style="text-align:right;font-size:9px;color:#aaa">目標比+¥914</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 80px 80px 70px;padding:9px 12px;align-items:center">
+      <span style="font-size:11px;color:#555">ROAS（LTV込み）</span>
+      <span style="text-align:right;font-size:13px;font-weight:800;color:#16a34a">285.53%</span>
+      <span style="text-align:right;font-size:11px;color:#aaa">—</span>
+      <span style="text-align:right;font-size:11px;color:#888">広告経由売上+LTV</span>
+    </div>
+  </div>
+
+  <!-- ③ 朝サウナ：予約数 + 利用売上金額 -->
+  <div class="sl">朝サウナ広告経由 実績</div>
+  <div class="dual-card">
+    <div class="dc-label">🔥 朝サウナ広告経由</div>
+    <div class="dual-row">
+      <div class="dual-block">
+        <div class="db-l">予約数</div>
+        <div class="db-n or">129<span class="db-u" style="color:#f97316">件</span></div>
+      </div>
+      <div class="dual-block">
+        <div class="db-l">利用売上金額</div>
+        <div class="db-n or" style="font-size:16px">¥896,355</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ 広告経由会員利用LTV -->
+  <div class="dual-card">
+    <div class="dc-label">💳 広告経由会員利用LTV</div>
+    <div class="dual-row">
+      <div class="dual-block">
+        <div class="db-l">件数</div>
+        <div class="db-n gr">22<span class="db-u" style="color:#16a34a">件</span></div>
+      </div>
+      <div class="dual-block">
+        <div class="db-l">利用売上金額</div>
+        <div class="db-n gr" style="font-size:16px">¥254,430</div>
+      </div>
+    </div>
+    <div style="margin-top:10px">
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:#999;margin-bottom:4px">
+        <span>目標達成率</span><span style="font-weight:700;color:#16a34a">254.4%</span>
+      </div>
+      <div style="height:6px;background:#f0f0f0;border-radius:3px;overflow:hidden">
+        <div style="width:100%;height:100%;background:linear-gradient(90deg,#16a34a,#22c55e);border-radius:3px"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:#aaa;margin-top:3px">
+        <span>実績 ¥254,430</span><span>目標 ¥100,000</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ④ 月別グラフ -->
+  <div class="sl">📊 月別推移</div>
+  <div class="chart-card">
+    <div class="chart-title">朝サウナ予約件数・広告費 月別比較</div>
+    <canvas id="monthly-chart" height="130"></canvas>
+  </div>
+
+  <!-- ⑤ 広告KPI -->
+  <div class="sl">広告KPI（全期間）</div>
+  <div class="g3">
+    <div class="kc"><div class="kl">広告費合計</div><div class="kn xs">¥403,035</div><div class="kh">3月+4月</div></div>
+    <div class="kc"><div class="kl">広告経由CPA</div><div class="kn or">¥3,124</div><div class="kh">÷129件</div></div>
+    <div class="kc"><div class="kl">LTV込みROAS</div><div class="kn gr">285.5%</div><div class="kh">広告経由売上+LTV</div></div>
+  </div>
+  <div class="g2">
+    <div class="kc"><div class="kl">3月広告費 / 全体CPA</div><div class="kn sm">¥110,035</div><div class="kh">CPA ¥1,375</div></div>
+    <div class="kc"><div class="kl">4月広告費 / 全体CPA</div><div class="kn sm">¥293,000</div><div class="kh">CPA ¥4,966</div></div>
+  </div>
+  <div class="g2">
+    <div class="kc"><div class="kl">広告経由ROAS</div><div class="kn or">222.4%</div><div class="kh">広告経由売上のみ</div></div>
+    <div class="kc"><div class="kl">LTV込みROAS</div><div class="kn gr">285.5%</div><div class="kh">会員LTV込み</div></div>
+  </div>
+
+  <!-- ⑥ 目標対比 -->
+  <div class="sl">目標対比</div>
+  <div class="g2">
+    <div class="tc"><div class="tl">朝サウナ広告経由 売上達成率</div><div class="tp or">89.6%</div><div class="tbw"><div class="tbf" style="width:89.6%;background:#f97316"></div></div><div class="td"><span>実績 ¥896,355</span><span>目標 ¥1,000,000</span></div></div>
+    <div class="tc"><div class="tl">朝サウナ広告経由 予約達成率</div><div class="tp bl">82.2%</div><div class="tbw"><div class="tbf" style="width:82.2%;background:#3b82f6"></div></div><div class="td"><span>実績 129件</span><span>目標 157件</span></div></div>
+  </div>
+
+  <!-- ⑦ 売上内訳 -->
+  <div class="sl">売上内訳</div>
+  <div class="card">
+    <div class="rr"><span style="color:#555">朝サウナ広告経由 売上</span><span style="font-weight:700">¥896,355</span></div>
+    <div class="rr"><span style="padding-left:10px;color:#aaa;font-size:11px">広告経由朝サウナ予約</span><span style="color:#f97316;font-weight:700">129件</span></div>
+    <div class="rr"><span style="color:#555">広告経由会員利用LTV</span><span style="color:#16a34a;font-weight:700">¥254,430</span></div>
+    <div class="rr"><span style="padding-left:10px;color:#aaa;font-size:11px">広告経由会員利用 22件合算</span><span style="color:#aaa"></span></div>
+    <div class="rr"><span style="color:#555">朝サウナ施策全体 売上</span><span style="color:#3b82f6;font-weight:700">¥1,017,945</span></div>
+    <div class="rr"><span style="color:#555">広告経由LTV込み売上</span><span style="color:#16a34a;font-weight:700">¥1,150,785</span></div>
+    <div class="rr tot"><span style="font-weight:700">メモ</span><span style="font-size:11px;color:#666;font-weight:700">広告経由ROAS 222.4% / LTV込みROAS 285.5%</span></div>
+  </div>
+
+  <!-- ⑧ 遷移先LP -->
+  <div class="sl">🔗 遷移先LP</div>
+  <a href="https://magmasauna.jp/lp_fb_v2/" target="_blank" class="lpc">
+    <div class="lpi">🔥</div>
+    <div class="lpin">
+      <div class="lpt">朝サウナ特設LP（Meta広告遷移先）</div>
+      <div class="lpu">magmasauna.jp/lp_fb_v2/</div>
+      <div class="lpb">noindex設定済み ／ hacomono予約連携</div>
+    </div>
+    <div class="lpa">›</div>
+  </a>
+  <a href="https://reservation.magmasauna.jp/reserve/schedule/1/1/" target="_blank" class="lpc" style="background:linear-gradient(135deg,#0f1a2e,#0a1628)">
+    <div class="lpi" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8)">📅</div>
+    <div class="lpin">
+      <div class="lpt">予約フォーム（hacomono）</div>
+      <div class="lpu">reservation.magmasauna.jp/reserve/schedule/1/1/</div>
+      <div class="lpb" style="background:rgba(59,130,246,.2);color:#3b82f6">CVポイント</div>
+    </div>
+    <div class="lpa" style="color:#3b82f6">›</div>
+  </a>
+
+  <!-- ⑨ 5月方針 -->
+  <div class="sl">5月以降 方針</div>
+  <div class="nb">✅ 朝サウナ会員募集開始（LP設定済み）<br>🎫 シークレットチケット 営業ノルマ化・販売強化<br>💳 年会費18万円 → 月額プランも展開予定</div>
+</div>
+
+<div class="upd">最終更新: 2026年5月4日</div>
+</div>
+
+<script>
+function switchTab(n,b){
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  const target=document.getElementById('tab-'+n);
+  if(target)target.classList.add('active');
+}
+
+(function(){
+  const ctx=document.getElementById('monthly-chart').getContext('2d');
+  new Chart(ctx,{
+    type:'bar',
+    data:{
+      labels:['3月（利用日3/1〜3/31）','4月（利用日4/1〜4/30）'],
+      datasets:[
+        {
+          label:'予約件数',
+          data:[80,59],
+          backgroundColor:['rgba(249,115,22,0.85)','rgba(59,130,246,0.85)'],
+          borderColor:['#f97316','#3b82f6'],
+          borderWidth:1.5,
+          borderRadius:6,
+          yAxisID:'y'
+        },
+        {
+          label:'広告費（万円）',
+          data:[11.0,29.3],
+          type:'line',
+          borderColor:'#9ca3af',
+          backgroundColor:'rgba(156,163,175,0.1)',
+          borderWidth:1.5,
+          pointRadius:4,
+          pointBackgroundColor:'#9ca3af',
+          yAxisID:'y2',
+          tension:.3
+        }
+      ]
+    },
+    options:{
+      responsive:true,
+      plugins:{
+        legend:{display:true,position:'bottom',labels:{font:{size:9},boxWidth:10,padding:12}},
+        tooltip:{callbacks:{label:c=>c.datasetIndex===0?`${c.parsed.y}件`:`¥${(c.parsed.y*10000).toLocaleString()}`}}
+      },
+      scales:{
+        y:{beginAtZero:true,max:80,ticks:{stepSize:10,font:{size:10}},grid:{color:'rgba(0,0,0,.05)'},title:{display:true,text:'件数',font:{size:9}}},
+        y2:{position:'right',beginAtZero:true,max:30,ticks:{font:{size:9},callback:v=>`¥${v}万`},grid:{display:false},title:{display:true,text:'広告費',font:{size:9}}},
+        x:{ticks:{font:{size:10}},grid:{display:false}}
+      }
+    }
+  });
+})();
+</script>
+</body>
+</html>
