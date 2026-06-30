@@ -22,7 +22,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
 .header-inner { max-width: 1200px; margin: 0 auto; padding: 20px 28px 0; }
 .header-title { font-size: 20px; font-weight: 800; }
 .header-sub { font-size: 12px; color: #888; margin-top: 4px; }
-.tab-strip { display: flex; gap: 0; margin-top: 18px; }
+.tab-strip { display: flex; flex-wrap: wrap; gap: 0; margin-top: 18px; }
 .tab-btn { padding: 12px 28px; font-size: 13px; font-weight: 700; color: #666; background: transparent; border: none; cursor: pointer; border-bottom: 3px solid transparent; letter-spacing: .3px; transition: all .2s; white-space: nowrap; }
 .tab-btn:hover { color: #fff; }
 .tab-btn.active-or { color: #f97316; border-bottom: 3px solid #f97316; }
@@ -94,6 +94,18 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
 .bar-track { height: 5px; background: #f0f0f0; border-radius: 3px; overflow: hidden; }
 .bar-fill { height: 100%; border-radius: 3px; }
 
+/* Comparison table */
+.compare-table { background: #fff; border-radius: 14px; box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow-x: auto; margin-bottom: 16px; }
+.compare-grid { min-width: 760px; }
+.compare-head, .compare-row { display: grid; grid-template-columns: 140px repeat(5, 1fr); align-items: center; }
+.compare-head { background: #f9f9f9; border-bottom: 1px solid #f0f0f0; color: #aaa; font-size: 10px; font-weight: 700; letter-spacing: .5px; }
+.compare-head span, .compare-row span { padding: 11px 12px; text-align: right; }
+.compare-head span:first-child, .compare-row span:first-child { text-align: left; color: #555; font-weight: 700; }
+.compare-row { border-bottom: 1px solid #f8f8f8; font-size: 12px; color: #555; }
+.compare-row:last-child { border-bottom: none; }
+.compare-row .focus { color: #8b5cf6; font-weight: 900; }
+.compare-note { padding: 0 12px 12px; color: #999; font-size: 10px; line-height: 1.7; }
+
 /* Progress card */
 .prog-card { background: #fff; border-radius: 14px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
 .prog-label { font-size: 11px; color: #999; margin-bottom: 10px; }
@@ -156,6 +168,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
       <button class="tab-btn" onclick="switchTab('jun',this,'active-pu')">
         💳 トライアル募集
         <span class="tab-sub">6月</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('jul',this,'active-pu')">
+        📈 施策提案
+        <span class="tab-sub">7月〜</span>
       </button>
     </div>
   </div>
@@ -462,6 +478,94 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
   </div>
 </div><!-- /tab-jun -->
 
+<!-- ===== TAB 4: 7月以降 予算提案 ===== -->
+<div class="tab-pane" id="tab-jul">
+  <div class="phase-badge-pu">朝サウナトライアル募集施策（7月〜）</div>
+
+  <!-- Hero -->
+  <div class="hero-may">
+    <div style="font-size:10px;color:#a78bfa;margin-bottom:14px;font-weight:700;letter-spacing:.8px">7月 20万円予算提案</div>
+    <div class="hero-row">
+      <div class="hero-block">
+        <div class="hero-lbl" style="color:#a78bfa">提案広告予算</div>
+        <div><span class="hero-num" style="color:#fff;font-size:40px">¥200,000</span></div>
+        <div class="hero-hint" style="color:#7c3aed">7月運用予算</div>
+      </div>
+      <div class="hero-block">
+        <div class="hero-lbl" style="color:#a78bfa">獲得見込み</div>
+        <div><span class="hero-num" style="color:#c4b5fd">44</span><span class="hero-unit" style="color:#c4b5fd">件</span></div>
+        <div class="hero-hint" style="color:#7c3aed">6月CPA ¥4,495基準</div>
+      </div>
+      <div class="hero-block">
+        <div class="hero-lbl" style="color:#a78bfa">想定トライアル売上</div>
+        <div><span class="hero-num" style="color:#34d399;font-size:36px">¥958,320</span></div>
+        <div class="hero-hint" style="color:#7c3aed">44件×¥21,780</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sl">提案サマリー</div>
+  <div class="pc-grid mb16">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="pc-grid" style="gap:12px">
+        <div class="kpi"><div class="kpi-label">想定CPA</div><div class="kpi-num pu">¥4,545</div><div class="kpi-sub">¥200,000÷44件</div></div>
+        <div class="kpi"><div class="kpi-label">想定トライアルROAS</div><div class="kpi-num or">479.2%</div><div class="kpi-sub">トライアル売上のみ</div></div>
+      </div>
+      <div class="pc-grid" style="gap:12px">
+        <div class="kpi"><div class="kpi-label">6月比 予算</div><div class="kpi-num sm bl">234%</div><div class="kpi-sub">¥85,400 → ¥200,000</div></div>
+        <div class="kpi"><div class="kpi-label">6月比 トライアル売上</div><div class="kpi-num sm gr">232%</div><div class="kpi-sub">¥413,820 → ¥958,320</div></div>
+      </div>
+      <div class="nb-pu">✅ 6月実績はCPA ¥4,495 / トライアルROAS 484.6%まで改善<br>📈 7月は20万円まで拡張し、同等CPAなら約44件の獲得を狙う設計<br>📊 LTV売上確定後は、LTV込みROASで追加評価</div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">2026年実績・7月提案 広告費 / 広告経由売上</div>
+      <canvas id="chart-jul" height="260"></canvas>
+    </div>
+  </div>
+
+  <div class="sl">前年3月〜7月 / 2026年実績・提案 比較</div>
+  <div class="compare-table">
+    <div class="compare-grid">
+      <div class="compare-head">
+        <span>項目</span><span>3月</span><span>4月</span><span>5月</span><span>6月</span><span>7月</span>
+      </div>
+      <div class="compare-row">
+        <span>前年 広告費</span><span>¥467,390</span><span>¥467,390</span><span>¥325,165</span><span>¥217,665</span><span>¥239,175</span>
+      </div>
+      <div class="compare-row">
+        <span>前年 広告経由売上</span><span>¥467,390</span><span>¥467,390</span><span>¥325,165</span><span>¥217,665</span><span>¥239,175</span>
+      </div>
+      <div class="compare-row">
+        <span>2026 広告費</span><span>¥110,035</span><span>¥293,000</span><span>¥39,841</span><span>¥85,400</span><span class="focus">¥200,000</span>
+      </div>
+      <div class="compare-row">
+        <span>2026 広告経由売上</span><span>¥521,137</span><span>¥375,218</span><span>¥65,340</span><span>¥413,820</span><span class="focus">¥958,320</span>
+      </div>
+      <div class="compare-row">
+        <span>2026 ROAS</span><span>473.6%</span><span>128.1%</span><span>163.9%</span><span>484.6%</span><span class="focus">479.2%</span>
+      </div>
+    </div>
+    <div class="compare-note">※ 2026年3〜4月の広告経由売上は、現レポート掲載の朝サウナ広告経由売上 ¥896,355 を予約件数比（3月75件 / 4月54件）で按分。7月は6月CPA基準の提案値。</div>
+  </div>
+
+  <div class="pc-grid">
+    <div>
+      <div class="sl">7月 提案内訳</div>
+      <div class="card mb12">
+        <div class="rr"><span style="color:#555">広告予算</span><span style="font-weight:800;color:#555">¥200,000</span></div>
+        <div class="rr"><span style="color:#555">想定トライアル申込</span><span class="pu" style="font-weight:800">44件</span></div>
+        <div class="rr"><span class="rr-indent">トライアル売上（44件×¥21,780）</span><span class="pu" style="font-weight:700">¥958,320</span></div>
+        <div class="rr"><span style="color:#555">想定CPA</span><span class="or" style="font-weight:800">¥4,545</span></div>
+        <div class="rr tot"><span style="font-weight:700">想定ROAS</span><span style="font-size:12px;color:#16a34a;font-weight:700">トライアル 479.2% / LTV込み 集計後更新</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="sl">運用方針</div>
+      <div class="nb-pu">1. 6月の勝ち筋を維持し、トライアル募集を主軸に配信<br>2. 朝サウナ訴求は入口施策として残し、トライアルLPへ接続<br>3. CPA ¥4,500前後を維持できる範囲で20万円まで段階拡張<br>4. LTV実績が確定次第、LTV込みROASで継続判断</div>
+    </div>
+  </div>
+</div><!-- /tab-jul -->
+
 <div class="upd">最終更新: 2026年6月30日</div>
 </div><!-- /content -->
 
@@ -605,6 +709,52 @@ function switchTab(id, btn, activeClass) {
       scales: {
         y: { beginAtZero: true, max: 20, ticks: { stepSize: 5, font: { size: 11 } }, grid: { color: 'rgba(0,0,0,.05)' }, title: { display: true, text: '件数', font: { size: 10 } } },
         y2: { position: 'right', beginAtZero: true, max: 10, ticks: { font: { size: 11 }, callback: v => `¥${v}万` }, grid: { display: false }, title: { display: true, text: '広告費', font: { size: 10 } } },
+        x: { ticks: { font: { size: 12 } }, grid: { display: false } }
+      }
+    }
+  });
+})();
+
+// 7月提案チャート
+(function(){
+  const ctx = document.getElementById('chart-jul').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['3月', '4月', '5月', '6月', '7月提案'],
+      datasets: [
+        {
+          label: '2026 広告経由売上（万円）',
+          data: [52.11, 37.52, 6.53, 41.38, 95.83],
+          backgroundColor: ['rgba(249,115,22,0.75)', 'rgba(249,115,22,0.75)', 'rgba(139,92,246,0.65)', 'rgba(139,92,246,0.85)', 'rgba(22,163,74,0.85)'],
+          borderColor: ['#f97316', '#f97316', '#8b5cf6', '#8b5cf6', '#16a34a'],
+          borderWidth: 1.5,
+          borderRadius: 8,
+          yAxisID: 'y'
+        },
+        {
+          label: '2026 広告費（万円）',
+          data: [11.0, 29.3, 3.98, 8.54, 20.0],
+          type: 'line',
+          borderColor: '#9ca3af',
+          backgroundColor: 'rgba(156,163,175,0.1)',
+          borderWidth: 2,
+          pointRadius: 6,
+          pointBackgroundColor: '#9ca3af',
+          yAxisID: 'y2',
+          tension: .3
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: true, position: 'bottom', labels: { font: { size: 11 }, boxWidth: 12, padding: 16 } },
+        tooltip: { callbacks: { label: c => c.datasetIndex === 0 ? `¥${(c.parsed.y * 10000).toLocaleString()}` : `広告費 ¥${(c.parsed.y * 10000).toLocaleString()}` } }
+      },
+      scales: {
+        y: { beginAtZero: true, max: 100, ticks: { stepSize: 20, font: { size: 11 }, callback: v => `¥${v}万` }, grid: { color: 'rgba(0,0,0,.05)' }, title: { display: true, text: '売上', font: { size: 10 } } },
+        y2: { position: 'right', beginAtZero: true, max: 30, ticks: { font: { size: 11 }, callback: v => `¥${v}万` }, grid: { display: false }, title: { display: true, text: '広告費', font: { size: 10 } } },
         x: { ticks: { font: { size: 12 } }, grid: { display: false } }
       }
     }
