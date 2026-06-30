@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Prolab Sauna Ad Report",
+  "schemaVersion": 1,
+  "description": "プロラボサウナ 広告レポート - PC/SP両対応レスポンシブ、朝サウナ施策（3-4月）とトライアル募集（5月〜）タブ分け"
+}
+</script>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -6,168 +13,603 @@
 <title>プロラボサウナ 広告レポート</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
 <style>
-:root{color-scheme:light;--purple:#7c4dff;--deep:#28105c;--green:#20d99a;--orange:#f97316}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic UI",sans-serif;background:#eef0f4;color:#111;font-size:13px}
-.header{background:linear-gradient(135deg,#0f0703,#1c0b04);color:#fff;border-bottom:2px solid var(--orange);padding:14px 28px 0}
-.header-title{font-size:24px;font-weight:900;letter-spacing:-.02em}
-.header-sub{color:#9ca3af;font-size:13px;margin-top:8px}
-.tabs{display:flex;gap:18px;margin-top:18px;overflow-x:auto}
-.tab-btn{appearance:none;border:1px solid transparent;background:transparent;color:#d1d5db;min-width:150px;padding:14px 18px 12px;border-radius:4px 4px 0 0;font-weight:800;font-size:13px;cursor:pointer}
-.tab-btn small{display:block;color:#f59e0b;font-size:10px;margin-top:4px}
-.tab-btn.active{border:2px solid #218bff;border-bottom-color:transparent;background:rgba(124,77,255,.08);color:#9b6cff}
-.content{padding:24px 6px 40px}
-.tab-pane{display:none}.tab-pane.active{display:block}
-.pill{display:inline-block;background:linear-gradient(135deg,#7c4dff,#5f3be6);color:#fff;border-radius:999px;padding:9px 22px;font-size:14px;font-weight:900;margin-bottom:18px}
-.hero{background:linear-gradient(135deg,#35106b,#24105a);color:#fff;border-radius:14px;padding:26px 24px;margin-bottom:24px}
-.hero-kicker{color:#b79cff;font-size:11px;font-weight:900;margin-bottom:26px}
-.hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
-.hero-cell{text-align:center;padding:0 24px;border-left:1px solid rgba(255,255,255,.18)}
-.hero-cell:first-child{border-left:none}
-.hero-label{color:#bda8ff;font-size:12px;margin-bottom:10px;font-weight:700}
-.hero-value{font-size:38px;line-height:1;font-weight:950;letter-spacing:-.03em}
-.hero-value .unit{font-size:18px;margin-left:3px}
-.hero-note{font-size:11px;color:#bda8ff;margin-top:8px}
-.green{color:var(--green)}.purple{color:#8b5cf6}.orange{color:#f97316}.muted{color:#9ca3af}
-.section-title{font-size:13px;color:#9ca3af;font-weight:900;margin:10px 0 16px}
-.kpi-layout{display:grid;grid-template-columns:minmax(320px,1fr) minmax(380px,1fr);gap:16px;align-items:start}
-.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card{background:#fff;border-radius:14px;padding:22px;box-shadow:0 2px 8px rgba(15,23,42,.08);min-height:112px;text-align:center}
-.card-label{color:#8d929c;font-size:12px;font-weight:800;margin-bottom:10px}
-.card-value{font-size:24px;font-weight:950;line-height:1}
-.card-sub{color:#aaa;font-size:11px;margin-top:7px}
-.chart-card{background:#fff;border-radius:14px;padding:22px;box-shadow:0 2px 8px rgba(15,23,42,.08);min-height:360px}
-.chart-title{font-size:13px;font-weight:900;margin-bottom:18px;color:#555}
-.memo{background:#fff;border-radius:14px;padding:18px 22px;box-shadow:0 2px 8px rgba(15,23,42,.08);margin-top:14px;color:#555;line-height:1.8}
-.memo strong{color:#111}
-.upd{font-size:10px;color:#aaa;text-align:right;margin-top:16px}
-@media(max-width:760px){
-  .header{padding:14px 16px 0}.header-title{font-size:20px}.tab-btn{min-width:132px}
-  .hero-grid,.kpi-layout{grid-template-columns:1fr}.hero-cell{border-left:none;border-top:1px solid rgba(255,255,255,.18);padding:18px 0}.hero-cell:first-child{border-top:none}
+:root { color-scheme: light; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic UI', sans-serif; background: #f0f2f5; color: #111; font-size: 14px; }
+
+/* ===== HEADER ===== */
+.header { background: linear-gradient(135deg, #0f0f0f, #1a0a00); color: #fff; border-bottom: 2px solid #f97316; }
+.header-inner { max-width: 1200px; margin: 0 auto; padding: 20px 28px 0; }
+.header-title { font-size: 20px; font-weight: 800; }
+.header-sub { font-size: 12px; color: #888; margin-top: 4px; }
+.tab-strip { display: flex; gap: 0; margin-top: 18px; }
+.tab-btn { padding: 12px 28px; font-size: 13px; font-weight: 700; color: #666; background: transparent; border: none; cursor: pointer; border-bottom: 3px solid transparent; letter-spacing: .3px; transition: all .2s; white-space: nowrap; }
+.tab-btn:hover { color: #fff; }
+.tab-btn.active-or { color: #f97316; border-bottom: 3px solid #f97316; }
+.tab-btn.active-pu { color: #8b5cf6; border-bottom: 3px solid #8b5cf6; }
+.tab-sub { font-size: 10px; font-weight: 400; margin-top: 2px; display: block; }
+
+/* ===== LAYOUT ===== */
+.content { max-width: 1200px; margin: 0 auto; padding: 24px 28px 40px; }
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+/* Section label */
+.sl { font-size: 11px; font-weight: 700; color: #999; letter-spacing: .8px; margin: 24px 0 12px; padding-bottom: 6px; border-bottom: 1px solid #e8e8e8; }
+
+/* Desktop 2-column grid */
+.pc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pc-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.pc-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+@media (max-width: 768px) {
+  .pc-grid { grid-template-columns: 1fr; }
+  .pc-grid-3 { grid-template-columns: 1fr 1fr; }
+  .pc-grid-4 { grid-template-columns: 1fr 1fr; }
+  .header-inner { padding: 16px 16px 0; }
+  .content { padding: 16px 16px 32px; }
+  .tab-btn { padding: 10px 14px; font-size: 12px; }
 }
+@media (max-width: 480px) {
+  .pc-grid-3 { grid-template-columns: 1fr; }
+  .pc-grid-4 { grid-template-columns: 1fr 1fr; }
+}
+
+/* ===== CARDS ===== */
+.card { background: #fff; border-radius: 14px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+.card-sm { background: #fff; border-radius: 14px; padding: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+.mb12 { margin-bottom: 12px; }
+.mb16 { margin-bottom: 16px; }
+
+/* KPI card */
+.kpi { background: #fff; border-radius: 14px; padding: 20px 16px; box-shadow: 0 1px 4px rgba(0,0,0,.08); text-align: center; }
+.kpi-label { font-size: 11px; color: #999; margin-bottom: 8px; font-weight: 600; }
+.kpi-num { font-size: 28px; font-weight: 900; line-height: 1; }
+.kpi-num.lg { font-size: 34px; }
+.kpi-num.sm { font-size: 20px; }
+.kpi-sub { font-size: 10px; color: #bbb; margin-top: 6px; }
+.or { color: #f97316; } .gr { color: #16a34a; } .bl { color: #3b82f6; } .pu { color: #8b5cf6; } .gy { color: #555; }
+
+/* Hero band */
+.hero { background: linear-gradient(135deg, #0f0f0f, #1a0a00); border-radius: 16px; padding: 24px; margin-bottom: 16px; color: #fff; }
+.hero-may { background: linear-gradient(135deg, #2e1065, #1e1b4b); border-radius: 16px; padding: 24px; margin-bottom: 16px; color: #fff; }
+.hero-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+@media (max-width: 480px) { .hero-row { grid-template-columns: 1fr 1fr; } .hero-row .hero-block:last-child { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.08); border-left: none !important; } }
+.hero-block { text-align: center; padding: 12px 16px; position: relative; }
+.hero-block + .hero-block::before { content: ''; position: absolute; left: 0; top: 10%; height: 80%; width: 1px; background: rgba(255,255,255,.12); }
+.hero-lbl { font-size: 11px; color: #888; margin-bottom: 8px; letter-spacing: .5px; }
+.hero-num { font-size: 48px; font-weight: 900; line-height: 1; }
+.hero-unit { font-size: 16px; font-weight: 700; margin-left: 2px; }
+.hero-hint { font-size: 10px; margin-top: 6px; }
+
+/* KPI table */
+.kpi-table { background: #fff; border-radius: 14px; box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden; margin-bottom: 16px; }
+.kpi-table-head { display: grid; grid-template-columns: 1fr 110px 110px 90px; background: #f9f9f9; border-bottom: 1px solid #f0f0f0; padding: 10px 20px; font-size: 10px; font-weight: 700; color: #aaa; letter-spacing: .5px; }
+.kpi-table-row { display: grid; grid-template-columns: 1fr 110px 110px 90px; padding: 13px 20px; border-bottom: 1px solid #f8f8f8; align-items: center; }
+.kpi-table-row:last-child { border-bottom: none; }
+.kpi-table-bar { padding: 0 20px 8px; }
+.kpi-tr-label { font-size: 13px; color: #555; }
+.kpi-tr-val { text-align: right; font-size: 15px; font-weight: 800; }
+.kpi-tr-goal { text-align: right; font-size: 12px; color: #aaa; }
+.kpi-tr-rate { text-align: right; font-size: 13px; font-weight: 700; }
+.bar-track { height: 5px; background: #f0f0f0; border-radius: 3px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 3px; }
+
+/* Progress card */
+.prog-card { background: #fff; border-radius: 14px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+.prog-label { font-size: 11px; color: #999; margin-bottom: 10px; }
+.prog-num { font-size: 36px; font-weight: 900; line-height: 1; margin-bottom: 6px; }
+.prog-bar { height: 8px; background: #f0f0f0; border-radius: 4px; overflow: hidden; margin: 8px 0; }
+.prog-fill { height: 100%; border-radius: 4px; }
+.prog-foot { display: flex; justify-content: space-between; font-size: 11px; color: #aaa; }
+
+/* Dual card */
+.dual-card { background: #fff; border-radius: 14px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+.dc-label { font-size: 11px; color: #999; margin-bottom: 12px; font-weight: 700; }
+.dual-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.dual-block { background: #f9f9f9; border-radius: 10px; padding: 14px; text-align: center; }
+.db-l { font-size: 10px; color: #aaa; margin-bottom: 6px; }
+.db-n { font-size: 26px; font-weight: 900; line-height: 1; }
+.db-u { font-size: 12px; font-weight: 600; }
+
+/* List rows */
+.rr { display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 1px solid #f5f5f5; font-size: 13px; }
+.rr:last-child { border-bottom: none; }
+.rr.tot { border-top: 1.5px solid #eee; border-bottom: none; margin-top: 6px; padding-top: 14px; }
+.rr-indent { color: #aaa; font-size: 12px; padding-left: 14px; }
+
+/* Chart */
+.chart-card { background: #fff; border-radius: 14px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+.chart-title { font-size: 12px; font-weight: 700; color: #555; margin-bottom: 16px; }
+
+/* LP links */
+.lpc { background: linear-gradient(135deg, #0f0f0f, #1a0a00); border-radius: 14px; padding: 16px 20px; box-shadow: 0 2px 8px rgba(0,0,0,.18); margin-bottom: 10px; display: flex; align-items: center; gap: 16px; text-decoration: none; color: inherit; transition: transform .15s; }
+.lpc:hover { transform: translateY(-1px); }
+.lpi { width: 48px; height: 48px; border-radius: 10px; background: linear-gradient(135deg, #f97316, #dc2626); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.lpin { flex: 1; min-width: 0; }
+.lpt { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.lpu { font-size: 10px; color: #888; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lpb { font-size: 10px; background: rgba(249,115,22,.2); color: #f97316; border-radius: 4px; padding: 2px 8px; margin-top: 5px; display: inline-block; font-weight: 600; }
+.lpa { color: #f97316; font-size: 20px; flex-shrink: 0; }
+
+/* Note */
+.nb { background: #fff; border-left: 4px solid #f97316; border-radius: 0 12px 12px 0; padding: 14px 18px; font-size: 12px; color: #555; line-height: 2; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.nb-pu { background: #fff; border-left: 4px solid #8b5cf6; border-radius: 0 12px 12px 0; padding: 14px 18px; font-size: 12px; color: #555; line-height: 2; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.phase-badge { display: inline-block; background: linear-gradient(135deg, #0f0f0f, #1a1a1a); color: #fff; border-radius: 24px; padding: 6px 18px; font-size: 13px; font-weight: 700; margin-bottom: 18px; }
+.phase-badge-pu { display: inline-block; background: linear-gradient(135deg, #7c3aed, #4f46e5); color: #fff; border-radius: 24px; padding: 6px 18px; font-size: 13px; font-weight: 700; margin-bottom: 18px; }
+.upd { font-size: 11px; color: #ccc; text-align: right; margin-top: 16px; }
 </style>
 </head>
 <body>
-<header class="header">
-  <div class="header-title">🧖 プロラボサウナ 広告レポート</div>
-  <div class="header-sub">Meta広告運用 ／ 2026年3月〜</div>
-  <nav class="tabs">
-    <button class="tab-btn" type="button" onclick="switchTab('morning',this)">🔥 朝サウナ施策<small>3月〜4月</small></button>
-    <button class="tab-btn active" type="button" onclick="switchTab('trial-may',this)">💳 トライアル募集<small>5月〜</small></button>
-    <button class="tab-btn" type="button" onclick="switchTab('trial-june',this)">💳 トライアル募集<small>6月</small></button>
-  </nav>
-</header>
+<div class="header">
+  <div class="header-inner">
+    <div class="header-title">🧖 プロラボサウナ 広告レポート</div>
+    <div class="header-sub">Meta広告運用 ／ 2026年3月〜</div>
+    <div class="tab-strip">
+      <button class="tab-btn active-or" onclick="switchTab('asa',this,'active-or')">
+        🔥 朝サウナ施策
+        <span class="tab-sub" style="color:#f97316">3月〜4月</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('may',this,'active-pu')">
+        💳 トライアル募集
+        <span class="tab-sub">5月〜</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('jun',this,'active-pu')">
+        💳 トライアル募集
+        <span class="tab-sub">6月</span>
+      </button>
+    </div>
+  </div>
+</div>
 
-<main class="content">
-  <section class="tab-pane" id="tab-morning">
-    <span class="pill">朝サウナ施策（3月〜4月）</span>
-    <div class="hero">
-      <div class="hero-kicker">朝サウナ施策サマリー</div>
-      <div class="hero-grid">
-        <div class="hero-cell"><div class="hero-label">朝サウナ広告経由</div><div class="hero-value orange">129<span class="unit">件</span></div><div class="hero-note">3月75＋4月54</div></div>
-        <div class="hero-cell"><div class="hero-label">利用売上金額</div><div class="hero-value">¥896,355</div><div class="hero-note">広告経由</div></div>
-        <div class="hero-cell"><div class="hero-label">LTV込みROAS</div><div class="hero-value green">285.5%</div><div class="hero-note">会員利用込み</div></div>
-      </div>
-    </div>
-    <div class="section-title">朝サウナ 広告KPI</div>
-    <div class="kpi-grid">
-      <div class="card"><div class="card-label">広告費合計</div><div class="card-value">¥403,035</div><div class="card-sub">3月+4月</div></div>
-      <div class="card"><div class="card-label">広告経由CPA</div><div class="card-value purple">¥3,124</div><div class="card-sub">÷129件</div></div>
-      <div class="card"><div class="card-label">広告経由ROAS</div><div class="card-value orange">222.4%</div><div class="card-sub">広告経由売上のみ</div></div>
-      <div class="card"><div class="card-label">LTV込みROAS</div><div class="card-value green">285.5%</div><div class="card-sub">会員LTV込み</div></div>
-    </div>
-  </section>
+<div class="content">
 
-  <section class="tab-pane active" id="tab-trial-may">
-    <span class="pill">5月実績（トライアル募集）</span>
-    <div class="hero">
-      <div class="hero-kicker">5月 広告経由サマリー</div>
-      <div class="hero-grid">
-        <div class="hero-cell"><div class="hero-label">トライアル申込</div><div class="hero-value">3<span class="unit">件</span></div><div class="hero-note">広告経由</div></div>
-        <div class="hero-cell"><div class="hero-label">トライアル単価</div><div class="hero-value">¥21,780</div><div class="hero-note">/件</div></div>
-        <div class="hero-cell"><div class="hero-label">LTV売上</div><div class="hero-value green">¥162,180</div><div class="hero-note">トライアル込み</div></div>
-      </div>
-    </div>
-    <div class="section-title">5月 広告KPI</div>
-    <div class="kpi-layout">
-      <div class="kpi-grid">
-        <div class="card"><div class="card-label">広告費</div><div class="card-value">¥39,841</div><div class="card-sub">5月合計</div></div>
-        <div class="card"><div class="card-label">CPA</div><div class="card-value purple">¥13,280</div><div class="card-sub">÷3件</div></div>
-        <div class="card"><div class="card-label">トライアル売上</div><div class="card-value purple">¥65,340</div><div class="card-sub">3件×¥21,780</div></div>
-        <div class="card"><div class="card-label">LTV売上（込み）</div><div class="card-value green">¥162,180</div><div class="card-sub">トライアル含む</div></div>
-        <div class="card"><div class="card-label">トライアルROAS</div><div class="card-value purple">164.0%</div><div class="card-sub">売上÷広告費</div></div>
-        <div class="card"><div class="card-label">LTV込みROAS</div><div class="card-value green">407.1%</div><div class="card-sub">LTV売上÷広告費</div></div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">会員募集 トライアル申込・広告費 月別</div>
-        <canvas id="trial-chart-may" height="300"></canvas>
-      </div>
-    </div>
-    <div class="upd">最終更新: 2026年6月30日</div>
-  </section>
+<!-- ===== TAB 1: 朝サウナ施策 ===== -->
+<div class="tab-pane active" id="tab-asa">
+  <div class="phase-badge">施策全期間（2/26〜4/30）</div>
 
-  <section class="tab-pane" id="tab-trial-june">
-    <span class="pill">6月実績（トライアル募集）</span>
-    <div class="hero">
-      <div class="hero-kicker">6月 広告経由サマリー</div>
-      <div class="hero-grid">
-        <div class="hero-cell"><div class="hero-label">トライアル申込</div><div class="hero-value">19<span class="unit">件</span></div><div class="hero-note">広告経由</div></div>
-        <div class="hero-cell"><div class="hero-label">トライアル単価</div><div class="hero-value">¥21,780</div><div class="hero-note">/件</div></div>
-        <div class="hero-cell"><div class="hero-label">LTV売上</div><div class="hero-value muted">集計中</div><div class="hero-note">トライアル込み</div></div>
+  <!-- Hero -->
+  <div class="hero">
+    <div style="font-size:10px;color:#666;margin-bottom:14px;font-weight:700;letter-spacing:.8px">予約数サマリー</div>
+    <div class="hero-row">
+      <div class="hero-block">
+        <div class="hero-lbl">朝サウナ広告経由</div>
+        <div><span class="hero-num" style="color:#f97316">129</span><span class="hero-unit" style="color:#f97316">件</span></div>
+        <div class="hero-hint" style="color:#666">3月75件 ＋ 4月54件</div>
+      </div>
+      <div class="hero-block">
+        <div class="hero-lbl">広告経由会員LTV</div>
+        <div><span class="hero-num" style="color:#16a34a">22</span><span class="hero-unit" style="color:#16a34a">件</span></div>
+        <div class="hero-hint" style="color:#666">会員利用LTV</div>
+      </div>
+      <div class="hero-block">
+        <div class="hero-lbl">朝サウナ施策全体</div>
+        <div><span class="hero-num" style="color:#fff">146</span><span class="hero-unit" style="color:#888">件</span></div>
+        <div class="hero-hint" style="color:#666">スプシ進捗表ベース</div>
       </div>
     </div>
-    <div class="section-title">6月 広告KPI</div>
-    <div class="kpi-layout">
-      <div class="kpi-grid">
-        <div class="card"><div class="card-label">広告費</div><div class="card-value">¥85,400</div><div class="card-sub">6月合計</div></div>
-        <div class="card"><div class="card-label">CPA</div><div class="card-value purple">¥4,495</div><div class="card-sub">÷19件</div></div>
-        <div class="card"><div class="card-label">トライアル売上</div><div class="card-value purple">¥413,820</div><div class="card-sub">19件×¥21,780</div></div>
-        <div class="card"><div class="card-label">LTV売上（込み）</div><div class="card-value muted">集計中</div><div class="card-sub">トライアル含む</div></div>
-        <div class="card"><div class="card-label">トライアルROAS</div><div class="card-value purple">484.6%</div><div class="card-sub">売上÷広告費</div></div>
-        <div class="card"><div class="card-label">LTV込みROAS</div><div class="card-value muted">集計中</div><div class="card-sub">LTV確定後更新</div></div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">会員募集 トライアル申込・広告費 月別</div>
-        <canvas id="trial-chart-june" height="300"></canvas>
+  </div>
+
+  <!-- KPI Table -->
+  <div class="sl">全体施策KPI（スプシ集計）</div>
+  <div class="kpi-table mb16">
+    <div class="kpi-table-head"><span>項目</span><span style="text-align:right">現在進捗</span><span style="text-align:right">目標</span><span style="text-align:right">達成率</span></div>
+    <div class="kpi-table-row"><span class="kpi-tr-label">朝サウナ予約合計数</span><span class="kpi-tr-val or">146件</span><span class="kpi-tr-goal">157件</span><span class="kpi-tr-rate or">92.99%</span></div>
+    <div class="kpi-table-bar"><div class="bar-track"><div class="bar-fill" style="width:93%;background:#f97316"></div></div></div>
+    <div class="kpi-table-row"><span class="kpi-tr-label">予約売上</span><span class="kpi-tr-val gr">¥1,017,945</span><span class="kpi-tr-goal">¥1,000,000</span><span class="kpi-tr-rate gr">101.79%</span></div>
+    <div class="kpi-table-bar"><div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#16a34a,#22c55e)"></div></div></div>
+    <div class="kpi-table-row"><span class="kpi-tr-label">広告費</span><span class="kpi-tr-val gy">¥445,953</span><span class="kpi-tr-goal">—</span><span class="kpi-tr-rate" style="color:#aaa">—</span></div>
+    <div class="kpi-table-row"><span class="kpi-tr-label">粗利</span><span class="kpi-tr-val bl">¥571,992</span><span class="kpi-tr-goal">¥664,000</span><span class="kpi-tr-rate" style="color:#888">86.1%</span></div>
+    <div class="kpi-table-row"><span class="kpi-tr-label">CPA</span><span class="kpi-tr-val or">¥3,054</span><span class="kpi-tr-goal">¥2,140</span><span class="kpi-tr-rate" style="color:#aaa;font-size:11px">目標比+¥914</span></div>
+    <div class="kpi-table-row"><span class="kpi-tr-label">ROAS（LTV込み）</span><span class="kpi-tr-val gr">285.53%</span><span class="kpi-tr-goal">—</span><span class="kpi-tr-rate" style="color:#aaa;font-size:10px">広告経由売上+LTV</span></div>
+  </div>
+
+  <!-- 実績 2列 -->
+  <div class="sl">朝サウナ広告経由 実績</div>
+  <div class="pc-grid mb16">
+    <div class="dual-card">
+      <div class="dc-label">🔥 朝サウナ広告経由</div>
+      <div class="dual-row">
+        <div class="dual-block"><div class="db-l">予約数</div><div class="db-n or">129<span class="db-u" style="color:#f97316">件</span></div></div>
+        <div class="dual-block"><div class="db-l">利用売上金額</div><div class="db-n or" style="font-size:20px">¥896,355</div></div>
       </div>
     </div>
-    <div class="memo"><strong>メモ：</strong>6月のLTV売上とLTV込みROASは一旦「集計中」。トライアルROASは ¥413,820 ÷ ¥85,400 = 484.6%。</div>
-    <div class="upd">最終更新: 2026年6月30日</div>
-  </section>
-</main>
+    <div class="dual-card">
+      <div class="dc-label">💳 広告経由会員利用LTV</div>
+      <div class="dual-row">
+        <div class="dual-block"><div class="db-l">件数</div><div class="db-n gr">22<span class="db-u" style="color:#16a34a">件</span></div></div>
+        <div class="dual-block"><div class="db-l">利用売上金額</div><div class="db-n gr" style="font-size:20px">¥254,430</div></div>
+      </div>
+      <div style="margin-top:14px">
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:#999;margin-bottom:5px"><span>目標達成率</span><span style="font-weight:700;color:#16a34a">254.4%</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:100%;background:linear-gradient(90deg,#16a34a,#22c55e)"></div></div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:#aaa;margin-top:4px"><span>実績 ¥254,430</span><span>目標 ¥100,000</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- チャート + KPI cards 2列 -->
+  <div class="sl">📊 月別推移</div>
+  <div class="pc-grid mb16">
+    <div class="chart-card">
+      <div class="chart-title">朝サウナ予約件数・広告費 月別比較</div>
+      <canvas id="chart-asa" height="180"></canvas>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="pc-grid" style="gap:12px">
+        <div class="kpi"><div class="kpi-label">広告費合計（3+4月）</div><div class="kpi-num sm gy">¥403,035</div><div class="kpi-sub">朝サウナ施策期間</div></div>
+        <div class="kpi"><div class="kpi-label">広告経由CPA</div><div class="kpi-num or">¥3,124</div><div class="kpi-sub">÷129件</div></div>
+      </div>
+      <div class="pc-grid" style="gap:12px">
+        <div class="kpi"><div class="kpi-label">3月 広告費 / CPA</div><div class="kpi-num sm gy">¥110,035</div><div class="kpi-sub">CPA ¥1,375</div></div>
+        <div class="kpi"><div class="kpi-label">4月 広告費 / CPA</div><div class="kpi-num sm gy">¥293,000</div><div class="kpi-sub">CPA ¥4,966</div></div>
+      </div>
+      <div class="pc-grid" style="gap:12px">
+        <div class="kpi"><div class="kpi-label">広告経由ROAS</div><div class="kpi-num or">222.4%</div><div class="kpi-sub">広告経由売上のみ</div></div>
+        <div class="kpi"><div class="kpi-label">LTV込みROAS</div><div class="kpi-num gr">285.5%</div><div class="kpi-sub">会員LTV込み</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 目標対比 -->
+  <div class="sl">目標対比</div>
+  <div class="pc-grid mb16">
+    <div class="prog-card">
+      <div class="prog-label">朝サウナ広告経由 売上達成率</div>
+      <div class="prog-num or">89.6%</div>
+      <div class="prog-bar"><div class="prog-fill" style="width:89.6%;background:#f97316"></div></div>
+      <div class="prog-foot"><span>実績 ¥896,355</span><span>目標 ¥1,000,000</span></div>
+    </div>
+    <div class="prog-card">
+      <div class="prog-label">朝サウナ広告経由 予約達成率</div>
+      <div class="prog-num bl">82.2%</div>
+      <div class="prog-bar"><div class="prog-fill" style="width:82.2%;background:#3b82f6"></div></div>
+      <div class="prog-foot"><span>実績 129件</span><span>目標 157件</span></div>
+    </div>
+  </div>
+
+  <!-- 売上内訳 + LP 2列 -->
+  <div class="pc-grid">
+    <div>
+      <div class="sl">売上内訳</div>
+      <div class="card mb12">
+        <div class="rr"><span style="color:#555">朝サウナ広告経由 売上</span><span style="font-weight:800">¥896,355</span></div>
+        <div class="rr"><span class="rr-indent">広告経由朝サウナ予約</span><span class="or" style="font-weight:700">129件</span></div>
+        <div class="rr"><span style="color:#555">広告経由会員利用LTV</span><span class="gr" style="font-weight:800">¥254,430</span></div>
+        <div class="rr"><span class="rr-indent">広告経由会員利用 22件合算</span><span style="color:#aaa">—</span></div>
+        <div class="rr"><span style="color:#555">朝サウナ施策全体 売上</span><span class="bl" style="font-weight:800">¥1,017,945</span></div>
+        <div class="rr"><span style="color:#555">広告経由LTV込み売上</span><span class="gr" style="font-weight:800">¥1,150,785</span></div>
+        <div class="rr tot"><span style="font-weight:700">ROAS</span><span style="font-size:12px;color:#555;font-weight:700">広告経由 222.4% / LTV込み 285.5%</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="sl">🔗 遷移先LP</div>
+      <a href="https://magmasauna.jp/lp_fb_v2/" target="_blank" class="lpc">
+        <div class="lpi">🔥</div>
+        <div class="lpin">
+          <div class="lpt">朝サウナ特設LP（Meta広告遷移先）</div>
+          <div class="lpu">magmasauna.jp/lp_fb_v2/</div>
+          <div class="lpb">noindex設定済み ／ hacomono予約連携</div>
+        </div>
+        <div class="lpa">›</div>
+      </a>
+      <a href="https://reservation.magmasauna.jp/reserve/schedule/1/1/" target="_blank" class="lpc" style="background:linear-gradient(135deg,#0f1a2e,#0a1628)">
+        <div class="lpi" style="background:linear-gradient(135deg,#3b82f6,#1d4ed8)">📅</div>
+        <div class="lpin">
+          <div class="lpt">予約フォーム（hacomono）</div>
+          <div class="lpu">reservation.magmasauna.jp/reserve/schedule/1/1/</div>
+          <div class="lpb" style="background:rgba(59,130,246,.2);color:#3b82f6">CVポイント</div>
+        </div>
+        <div class="lpa" style="color:#3b82f6">›</div>
+      </a>
+    </div>
+  </div>
+</div><!-- /tab-asa -->
+
+
+<!-- ===== TAB 2: トライアル募集（5月〜）===== -->
+<div class="tab-pane" id="tab-may">
+  <div class="phase-badge-pu">5月実績（トライアル募集）</div>
+
+  <!-- Hero -->
+  <div class="hero-may">
+    <div style="font-size:10px;color:#a78bfa;margin-bottom:14px;font-weight:700;letter-spacing:.8px">5月 広告経由サマリー</div>
+    <div class="hero-row">
+      <div class="hero-block">
+        <div class="hero-lbl" style="color:#a78bfa">トライアル申込</div>
+        <div><span class="hero-num" style="color:#c4b5fd">3</span><span class="hero-unit" style="color:#c4b5fd">件</span></div>
+        <div class="hero-hint" style="color:#7c3aed">広告経由</div>
+      </div>
+      <div class="hero-block">
+        <div class="hero-lbl" style="color:#a78bfa">トライアル単価</div>
+        <div><span class="hero-num" style="color:#fff;font-size:36px">¥21,780</span></div>
+        <div class="hero-hint" style="color:#7c3aed">/ 件</div>
+      </div>
+      <div class="hero-block">
+        <div class="hero-lbl" style="color:#a78bfa">LTV売上</div>
+        <div><span class="hero-num" style="color:#34d399;font-size:36px">¥162,180</span></div>
+        <div class="hero-hint" style="color:#7c3aed">トライアル込み</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI cards + Chart 2列 -->
+  <div class="sl">5月 広告KPI</div>
+  <div class="pc-grid mb16">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="pc-grid" style="gap:12px">
+        <div class="kpi"><div class="kpi-label">広告費</div><div class="kpi-num sm gy">¥39,841</div><div class="kpi-sub">5月合計</div></div>
+        <div class="kpi"><div class="kpi-label">CPA</div><div class="kpi-num pu">¥13,280</div><div class="kpi-sub">÷3件</div></div>
+      </div>
+      <div class="pc-grid" style="gap:12px">
+        <div class="kpi"><div class="kpi-label">トライアル売上</div><div class="kpi-num sm pu">¥65,340</div><div class="kpi-sub">3件×¥21,780</div></div>
+        <div class="kpi"><div class="kpi-label">LTV売上（込み）</div><div class="kpi-num sm gr">¥162,180</div><div class="kpi-sub">トライアル含む</div></div>
+      </div>
+      <div class="pc-grid" style="gap:12px">
+        <div class="kpi"><div class="kpi-label">トライアルROAS</div><div class="kpi-num or">163.9%</div><div class="kpi-sub">トライアル売上のみ</div></div>
+        <div class="kpi"><div class="kpi-label">LTV込みROAS</div><div class="kpi-num gr">407.1%</div><div class="kpi-sub">LTV¥162,180込み</div></div>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">会員募集 トライアル申込・広告費 月別</div>
+      <canvas id="chart-may" height="260"></canvas>
+    </div>
+  </div>
+
+  <!-- 売上内訳 + 方針 2列 -->
+  <div class="pc-grid">
+    <div>
+      <div class="sl">5月 売上内訳</div>
+      <div class="card mb12">
+        <div class="rr"><span style="color:#555">広告費</span><span style="font-weight:800;color:#555">¥39,841</span></div>
+        <div class="rr"><span style="color:#555">トライアル申込（広告経由）</span><span class="pu" style="font-weight:800">3件</span></div>
+        <div class="rr"><span class="rr-indent">トライアル売上（3件×¥21,780）</span><span class="pu" style="font-weight:700">¥65,340</span></div>
+        <div class="rr"><span style="color:#555">LTV売上（トライアル込み）</span><span class="gr" style="font-weight:800">¥162,180</span></div>
+        <div class="rr tot"><span style="font-weight:700">ROAS</span><span style="font-size:12px;color:#16a34a;font-weight:700">トライアル 163.9% / LTV込み 407.1%</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="sl">🔗 遷移先LP</div>
+      <a href="https://magmasauna.jp/lp_fb/" target="_blank" class="lpc" style="background:linear-gradient(135deg,#2e1065,#1e1b4b)">
+        <div class="lpi" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9)">💳</div>
+        <div class="lpin">
+          <div class="lpt">トライアル募集LP（Meta広告遷移先）</div>
+          <div class="lpu">magmasauna.jp/lp_fb/</div>
+          <div class="lpb" style="background:rgba(139,92,246,.2);color:#a78bfa">メインLP</div>
+        </div>
+        <div class="lpa" style="color:#8b5cf6">›</div>
+      </a>
+      <div class="sl">方針・施策</div>
+      <div class="nb-pu">✅ トライアル募集開始（LP設定済み）<br>🎫 シークレットチケット 営業ノルマ化・販売強化<br>💳 年会費18万円 → 月額プランも展開予定</div>
+    </div>
+  </div>
+</div><!-- /tab-may -->
+
+<!-- ===== TAB 3: トライアル募集（6月）===== -->
+<div class="tab-pane" id="tab-jun">
+  <div class="phase-badge-pu">6月実績（トライアル募集）</div>
+
+  <!-- Hero -->
+  <div class="hero-may">
+    <div style="font-size:10px;color:#a78bfa;margin-bottom:14px;font-weight:700;letter-spacing:.8px">6月 広告経由サマリー</div>
+    <div class="hero-row">
+      <div class="hero-block">
+        <div class="hero-lbl" style="color:#a78bfa">トライアル申込</div>
+        <div><span class="hero-num" style="color:#c4b5fd">19</span><span class="hero-unit" style="color:#c4b5fd">件</span></div>
+        <div class="hero-hint" style="color:#7c3aed">広告経由</div>
+      </div>
+      <div class="hero-block">
+        <div class="hero-lbl" style="color:#a78bfa">トライアル単価</div>
+        <div><span class="hero-num" style="color:#fff;font-size:36px">¥21,780</span></div>
+        <div class="hero-hint" style="color:#7c3aed">/ 件</div>
+      </div>
+      <div class="hero-block">
+        <div class="hero-lbl" style="color:#a78bfa">LTV売上</div>
+        <div><span class="hero-num" style="color:#9ca3af;font-size:34px">集計中</span></div>
+        <div class="hero-hint" style="color:#7c3aed">LTV込みROASも集計中</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI cards + Chart 2列 -->
+  <div class="sl">6月 広告KPI</div>
+  <div class="pc-grid mb16">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="pc-grid" style="gap:12px">
+        <div class="kpi"><div class="kpi-label">広告費</div><div class="kpi-num sm gy">¥85,400</div><div class="kpi-sub">6月合計</div></div>
+        <div class="kpi"><div class="kpi-label">CPA</div><div class="kpi-num pu">¥4,495</div><div class="kpi-sub">÷19件</div></div>
+      </div>
+      <div class="pc-grid" style="gap:12px">
+        <div class="kpi"><div class="kpi-label">トライアル売上</div><div class="kpi-num sm pu">¥413,820</div><div class="kpi-sub">19件×¥21,780</div></div>
+        <div class="kpi"><div class="kpi-label">LTV売上（込み）</div><div class="kpi-num sm gy">集計中</div><div class="kpi-sub">トライアル含む</div></div>
+      </div>
+      <div class="pc-grid" style="gap:12px">
+        <div class="kpi"><div class="kpi-label">トライアルROAS</div><div class="kpi-num or">484.6%</div><div class="kpi-sub">トライアル売上のみ</div></div>
+        <div class="kpi"><div class="kpi-label">LTV込みROAS</div><div class="kpi-num gy">集計中</div><div class="kpi-sub">LTV確定後に更新</div></div>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">会員募集 トライアル申込・広告費 月別</div>
+      <canvas id="chart-jun" height="260"></canvas>
+    </div>
+  </div>
+
+  <!-- 売上内訳 + 方針 2列 -->
+  <div class="pc-grid">
+    <div>
+      <div class="sl">6月 売上内訳</div>
+      <div class="card mb12">
+        <div class="rr"><span style="color:#555">広告費</span><span style="font-weight:800;color:#555">¥85,400</span></div>
+        <div class="rr"><span style="color:#555">トライアル申込（広告経由）</span><span class="pu" style="font-weight:800">19件</span></div>
+        <div class="rr"><span class="rr-indent">トライアル売上（19件×¥21,780）</span><span class="pu" style="font-weight:700">¥413,820</span></div>
+        <div class="rr"><span style="color:#555">LTV売上（トライアル込み）</span><span style="font-weight:800;color:#777">集計中</span></div>
+        <div class="rr tot"><span style="font-weight:700">ROAS</span><span style="font-size:12px;color:#16a34a;font-weight:700">トライアル 484.6% / LTV込み 集計中</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="sl">🔗 遷移先LP</div>
+      <a href="https://magmasauna.jp/lp_fb/" target="_blank" class="lpc" style="background:linear-gradient(135deg,#2e1065,#1e1b4b)">
+        <div class="lpi" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9)">💳</div>
+        <div class="lpin">
+          <div class="lpt">トライアル募集LP（Meta広告遷移先）</div>
+          <div class="lpu">magmasauna.jp/lp_fb/</div>
+          <div class="lpb" style="background:rgba(139,92,246,.2);color:#a78bfa">メインLP</div>
+        </div>
+        <div class="lpa" style="color:#8b5cf6">›</div>
+      </a>
+      <div class="sl">方針・施策</div>
+      <div class="nb-pu">✅ 6月トライアル募集 実績反映<br>💳 トライアル売上 ¥413,820（19件）<br>📊 LTV売上・LTV込みROASは集計中</div>
+    </div>
+  </div>
+</div><!-- /tab-jun -->
+
+<div class="upd">最終更新: 2026年6月30日</div>
+</div><!-- /content -->
 
 <script>
-function switchTab(name, button){
-  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
-  document.getElementById('tab-'+name)?.classList.add('active');
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  button?.classList.add('active');
+function switchTab(id, btn, activeClass) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active-or','active-pu'); });
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add(activeClass);
 }
 
-function makeTrialChart(id, values){
-  const ctx=document.getElementById(id);
-  if(!ctx)return;
-  new Chart(ctx,{
-    data:{
-      labels:['5月','6月'],
-      datasets:[
-        {type:'bar',label:'トライアル申込',data:values.trials,backgroundColor:'rgba(124,77,255,.78)',borderColor:'#7c4dff',borderWidth:1.5,borderRadius:8,yAxisID:'y'},
-        {type:'line',label:'広告費',data:values.spend,showLine:false,pointRadius:7,pointBackgroundColor:'#9ca3af',pointBorderColor:'#9ca3af',borderColor:'#9ca3af',yAxisID:'y2'}
+// 朝サウナ施策チャート
+(function(){
+  const ctx = document.getElementById('chart-asa').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['3月（利用日3/1〜3/31）', '4月（利用日4/1〜4/30）'],
+      datasets: [
+        {
+          label: '予約件数',
+          data: [80, 59],
+          backgroundColor: ['rgba(249,115,22,0.85)', 'rgba(59,130,246,0.85)'],
+          borderColor: ['#f97316', '#3b82f6'],
+          borderWidth: 1.5,
+          borderRadius: 8,
+          yAxisID: 'y'
+        },
+        {
+          label: '広告費（万円）',
+          data: [11.0, 29.3],
+          type: 'line',
+          borderColor: '#9ca3af',
+          backgroundColor: 'rgba(156,163,175,0.1)',
+          borderWidth: 2,
+          pointRadius: 5,
+          pointBackgroundColor: '#9ca3af',
+          yAxisID: 'y2',
+          tension: .3
+        }
       ]
     },
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.datasetIndex===0?`${c.parsed.y}件`:`¥${(c.parsed.y*10000).toLocaleString()}`}}},
-      scales:{
-        y:{beginAtZero:true,max:20,ticks:{stepSize:2,font:{size:10}},grid:{color:'rgba(0,0,0,.06)'},title:{display:true,text:'件数',font:{size:10}}},
-        y2:{position:'right',beginAtZero:true,max:10,ticks:{font:{size:10},callback:v=>`¥${v}万`},grid:{display:false},title:{display:true,text:'広告費',font:{size:10}}},
-        x:{grid:{display:false},ticks:{font:{size:11,weight:'bold'}}}
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: true, position: 'bottom', labels: { font: { size: 11 }, boxWidth: 12, padding: 16 } },
+        tooltip: { callbacks: { label: c => c.datasetIndex === 0 ? `${c.parsed.y}件` : `¥${(c.parsed.y * 10000).toLocaleString()}` } }
+      },
+      scales: {
+        y: { beginAtZero: true, max: 90, ticks: { stepSize: 10, font: { size: 11 } }, grid: { color: 'rgba(0,0,0,.05)' }, title: { display: true, text: '件数', font: { size: 10 } } },
+        y2: { position: 'right', beginAtZero: true, max: 35, ticks: { font: { size: 11 }, callback: v => `¥${v}万` }, grid: { display: false }, title: { display: true, text: '広告費', font: { size: 10 } } },
+        x: { ticks: { font: { size: 11 } }, grid: { display: false } }
       }
     }
   });
-}
-makeTrialChart('trial-chart-may',{trials:[3,null],spend:[3.9841,null]});
-makeTrialChart('trial-chart-june',{trials:[3,19],spend:[3.9841,8.54]});
+})();
+
+// 会員募集チャート
+(function(){
+  const ctx = document.getElementById('chart-may').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['5月'],
+      datasets: [
+        {
+          label: 'トライアル申込',
+          data: [3],
+          backgroundColor: ['rgba(139,92,246,0.85)'],
+          borderColor: ['#8b5cf6'],
+          borderWidth: 1.5,
+          borderRadius: 8,
+          yAxisID: 'y'
+        },
+        {
+          label: '広告費（万円）',
+          data: [3.98],
+          type: 'line',
+          borderColor: '#9ca3af',
+          backgroundColor: 'rgba(156,163,175,0.1)',
+          borderWidth: 2,
+          pointRadius: 6,
+          pointBackgroundColor: '#9ca3af',
+          yAxisID: 'y2',
+          tension: .3
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: true, position: 'bottom', labels: { font: { size: 11 }, boxWidth: 12, padding: 16 } },
+        tooltip: { callbacks: { label: c => c.datasetIndex === 0 ? `${c.parsed.y}件` : `¥${(c.parsed.y * 10000).toLocaleString()}` } }
+      },
+      scales: {
+        y: { beginAtZero: true, max: 10, ticks: { stepSize: 2, font: { size: 11 } }, grid: { color: 'rgba(0,0,0,.05)' }, title: { display: true, text: '件数', font: { size: 10 } } },
+        y2: { position: 'right', beginAtZero: true, max: 10, ticks: { font: { size: 11 }, callback: v => `¥${v}万` }, grid: { display: false }, title: { display: true, text: '広告費', font: { size: 10 } } },
+        x: { ticks: { font: { size: 12 } }, grid: { display: false } }
+      }
+    }
+  });
+})();
+
+// 会員募集チャート（6月タブ）
+(function(){
+  const ctx = document.getElementById('chart-jun').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['5月', '6月'],
+      datasets: [
+        {
+          label: 'トライアル申込',
+          data: [3, 19],
+          backgroundColor: ['rgba(139,92,246,0.65)', 'rgba(139,92,246,0.9)'],
+          borderColor: ['#8b5cf6', '#8b5cf6'],
+          borderWidth: 1.5,
+          borderRadius: 8,
+          yAxisID: 'y'
+        },
+        {
+          label: '広告費（万円）',
+          data: [3.98, 8.54],
+          type: 'line',
+          borderColor: '#9ca3af',
+          backgroundColor: 'rgba(156,163,175,0.1)',
+          borderWidth: 2,
+          pointRadius: 6,
+          pointBackgroundColor: '#9ca3af',
+          yAxisID: 'y2',
+          tension: .3
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: true, position: 'bottom', labels: { font: { size: 11 }, boxWidth: 12, padding: 16 } },
+        tooltip: { callbacks: { label: c => c.datasetIndex === 0 ? `${c.parsed.y}件` : `¥${(c.parsed.y * 10000).toLocaleString()}` } }
+      },
+      scales: {
+        y: { beginAtZero: true, max: 20, ticks: { stepSize: 5, font: { size: 11 } }, grid: { color: 'rgba(0,0,0,.05)' }, title: { display: true, text: '件数', font: { size: 10 } } },
+        y2: { position: 'right', beginAtZero: true, max: 10, ticks: { font: { size: 11 }, callback: v => `¥${v}万` }, grid: { display: false }, title: { display: true, text: '広告費', font: { size: 10 } } },
+        x: { ticks: { font: { size: 12 } }, grid: { display: false } }
+      }
+    }
+  });
+})();
 </script>
 </body>
 </html>
