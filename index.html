@@ -72,6 +72,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
 /* Hero band */
 .hero { background: linear-gradient(135deg, #0f0f0f, #1a0a00); border-radius: 16px; padding: 24px; margin-bottom: 16px; color: #fff; }
 .hero-may { background: linear-gradient(135deg, #2e1065, #1e1b4b); border-radius: 16px; padding: 24px; margin-bottom: 16px; color: #fff; }
+.overall-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.overall-summary-card { background: #fff; border-radius: 14px; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); border-top: 3px solid #3b82f6; text-align: center; }
+.overall-summary-card:last-child { border-top-color: #f97316; }
+.overall-summary-label { font-size: 11px; color: #999; font-weight: 700; margin-bottom: 7px; letter-spacing: .3px; }
+.overall-summary-value { font-size: 30px; font-weight: 900; line-height: 1; }
+.overall-summary-goal { font-size: 11px; color: #aaa; font-weight: 600; margin-top: 8px; }
+@media (max-width: 480px) { .overall-summary-card { padding: 16px 10px; } .overall-summary-value { font-size: 23px; } }
 .hero-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
 @media (max-width: 480px) { .hero-row { grid-template-columns: 1fr 1fr; } .hero-row .hero-block:last-child { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.08); border-left: none !important; } }
 .hero-block { text-align: center; padding: 12px 16px; position: relative; }
@@ -157,9 +164,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
     <div class="header-title">🧖 プロラボサウナ 広告レポート</div>
     <div class="header-sub">Meta広告運用 ／ 2026年3月〜</div>
     <div class="tab-strip">
-      <button class="tab-btn active-or" onclick="switchTab('asa',this,'active-or')">
+      <button class="tab-btn active-pu" onclick="switchTab('summary',this,'active-pu')">
+        📊 全体サマリー
+        <span class="tab-sub" style="color:#a78bfa">3月〜7月</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('asa',this,'active-or')">
         🔥 朝サウナ施策
-        <span class="tab-sub" style="color:#f97316">3月〜4月</span>
+        <span class="tab-sub">3月〜4月</span>
       </button>
       <button class="tab-btn" onclick="switchTab('may',this,'active-pu')">
         💳 トライアル募集
@@ -170,8 +181,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
         <span class="tab-sub">6月</span>
       </button>
       <button class="tab-btn" onclick="switchTab('jul',this,'active-pu')">
-        📈 施策提案
-        <span class="tab-sub">7月〜</span>
+        💳 トライアル募集
+        <span class="tab-sub">7月</span>
       </button>
     </div>
   </div>
@@ -179,9 +190,58 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
 
 <div class="content">
 
-<!-- ===== TAB 1: 朝サウナ施策 ===== -->
-<div class="tab-pane active" id="tab-asa">
+<!-- ===== TAB 1: 3〜7月 全体サマリー ===== -->
+<div class="tab-pane active" id="tab-summary">
+  <div class="phase-badge-pu">2026年3月〜7月 実績サマリー</div>
+
+  <div class="pc-grid-4 mb16">
+    <div class="kpi"><div class="kpi-label">3〜4月 全体売上</div><div class="kpi-num sm bl">¥1,017,945</div><div class="kpi-sub">目標 100万円 / 101.8%</div></div>
+    <div class="kpi"><div class="kpi-label">3〜4月 全体予約</div><div class="kpi-num or">216<span style="font-size:13px">名</span></div><div class="kpi-sub">目標 200名 / 108.0%</div></div>
+    <div class="kpi"><div class="kpi-label">5〜7月 通常トライアル</div><div class="kpi-num pu">38<span style="font-size:13px">件</span></div><div class="kpi-sub">5月3件 + 6月19件 + 7月16件</div></div>
+    <div class="kpi"><div class="kpi-label">7月 広告費消化</div><div class="kpi-num sm gy">¥234,111</div><div class="kpi-sub">通常トライアル施策を主軸化</div></div>
+  </div>
+
+  <div class="sl">月別・施策別実績</div>
+  <div class="compare-table">
+    <div class="compare-grid">
+      <div class="compare-head"><span>項目</span><span>3〜4月</span><span>5月</span><span>6月</span><span>7月</span><span>合計/補足</span></div>
+      <div class="compare-row"><span>主施策</span><span>朝サウナ</span><span>トライアル</span><span>トライアル</span><span class="focus">トライアル</span><span>通常施策へ集約</span></div>
+      <div class="compare-row"><span>広告費</span><span>¥403,035</span><span>¥39,841</span><span>¥85,400</span><span class="focus">¥234,111</span><span>¥762,387</span></div>
+      <div class="compare-row"><span>予約・申込</span><span>129件（広告経由）</span><span>3件</span><span>19件</span><span class="focus">16件</span><span>通常トライアル 38件</span></div>
+      <div class="compare-row"><span>売上</span><span>¥1,017,945（全体）</span><span>¥65,340</span><span>¥413,820</span><span class="focus">集計待ち</span><span>7月売上確定後に更新</span></div>
+    </div>
+    <div class="compare-note">※ 3〜4月の全体予約は216名。うち朝サウナ広告経由は129件。7月は通常トライアル16件に加え、終了した朝サウナトライアル2件の実績あり。</div>
+  </div>
+
+  <div class="pc-grid">
+    <div class="chart-card">
+      <div class="chart-title">5〜7月 通常トライアル予約数 / 広告費</div>
+      <canvas id="chart-summary" height="220"></canvas>
+    </div>
+    <div>
+      <div class="sl" style="margin-top:0">7月以降の運用方針</div>
+      <div class="nb-pu">✅ 通常トライアル募集をメイン施策として継続<br>📌 朝サウナトライアルは終了<br>📊 7月は広告費 ¥234,111、通常トライアル16件を獲得<br>🔎 今後は通常トライアルのCPAとLTVを中心に評価</div>
+    </div>
+  </div>
+</div><!-- /tab-summary -->
+
+<!-- ===== TAB 2: 朝サウナ施策 ===== -->
+<div class="tab-pane" id="tab-asa">
   <div class="phase-badge">施策全期間（2/26〜4/30）</div>
+
+  <!-- 3〜4月 全体実績 -->
+  <div class="overall-summary" aria-label="3〜4月 全体実績">
+    <div class="overall-summary-card">
+      <div class="overall-summary-label">3〜4月 全体売上</div>
+      <div class="overall-summary-value bl">¥1,017,945</div>
+      <div class="overall-summary-goal">目標：100万円</div>
+    </div>
+    <div class="overall-summary-card">
+      <div class="overall-summary-label">3〜4月 予約人数</div>
+      <div class="overall-summary-value or">216<span style="font-size:14px;margin-left:3px">名</span></div>
+      <div class="overall-summary-goal">目標：200名</div>
+    </div>
+  </div>
 
   <!-- Hero -->
   <div class="hero">
@@ -478,95 +538,83 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
   </div>
 </div><!-- /tab-jun -->
 
-<!-- ===== TAB 4: 7月以降 予算提案 ===== -->
+<!-- ===== TAB 5: 7月 トライアル募集実績 ===== -->
 <div class="tab-pane" id="tab-jul">
-  <div class="phase-badge-pu">朝サウナトライアル募集施策（7月〜）</div>
+  <div class="phase-badge-pu">7月実績（トライアル募集）</div>
 
   <!-- Hero -->
   <div class="hero-may">
-    <div style="font-size:10px;color:#a78bfa;margin-bottom:14px;font-weight:700;letter-spacing:.8px">7月 20万円予算提案（2施策並走）</div>
+    <div style="font-size:10px;color:#a78bfa;margin-bottom:14px;font-weight:700;letter-spacing:.8px">7月 広告運用実績</div>
     <div class="hero-row">
       <div class="hero-block">
-        <div class="hero-lbl" style="color:#a78bfa">提案広告予算</div>
-        <div><span class="hero-num" style="color:#fff;font-size:40px">¥200,000</span></div>
-        <div class="hero-hint" style="color:#7c3aed">7月運用予算</div>
+        <div class="hero-lbl" style="color:#a78bfa">広告費消化</div>
+        <div><span class="hero-num" style="color:#fff;font-size:40px">¥234,111</span></div>
+        <div class="hero-hint" style="color:#7c3aed">7月実績</div>
       </div>
       <div class="hero-block">
-        <div class="hero-lbl" style="color:#a78bfa">獲得見込み</div>
-        <div><span class="hero-num" style="color:#c4b5fd">40</span><span class="hero-unit" style="color:#c4b5fd">件</span></div>
-        <div class="hero-hint" style="color:#7c3aed">通常20件 + 朝サウナ20件</div>
+        <div class="hero-lbl" style="color:#a78bfa">通常トライアル予約</div>
+        <div><span class="hero-num" style="color:#c4b5fd">16</span><span class="hero-unit" style="color:#c4b5fd">件</span></div>
+        <div class="hero-hint" style="color:#7c3aed">今後のメイン施策</div>
       </div>
       <div class="hero-block">
-        <div class="hero-lbl" style="color:#a78bfa">想定売上</div>
-        <div><span class="hero-num" style="color:#34d399;font-size:36px">¥731,600</span></div>
-        <div class="hero-hint" style="color:#7c3aed">通常 + 朝サウナ合計</div>
+        <div class="hero-lbl" style="color:#a78bfa">朝サウナトライアル</div>
+        <div><span class="hero-num" style="color:#f97316">2</span><span class="hero-unit" style="color:#f97316">件</span></div>
+        <div class="hero-hint" style="color:#7c3aed">施策終了・参考実績</div>
       </div>
     </div>
   </div>
 
-  <div class="sl">提案サマリー</div>
+  <div class="sl">7月 広告KPI</div>
   <div class="pc-grid mb16">
     <div style="display:flex;flex-direction:column;gap:12px">
       <div class="pc-grid" style="gap:12px">
-        <div class="kpi"><div class="kpi-label">通常トライアル募集</div><div class="kpi-num sm pu">¥100,000</div><div class="kpi-sub">20件 / 売上 ¥435,600</div></div>
-        <div class="kpi"><div class="kpi-label">朝サウナトライアル</div><div class="kpi-num sm or">¥100,000</div><div class="kpi-sub">20件 / 売上 ¥296,000</div></div>
+        <div class="kpi"><div class="kpi-label">広告費</div><div class="kpi-num sm gy">¥234,111</div><div class="kpi-sub">7月消化実績</div></div>
+        <div class="kpi"><div class="kpi-label">通常トライアル CPA</div><div class="kpi-num pu">¥14,632</div><div class="kpi-sub">¥234,111 ÷ 16件</div></div>
       </div>
       <div class="pc-grid" style="gap:12px">
-        <div class="kpi"><div class="kpi-label">合計想定CPA</div><div class="kpi-num pu">¥5,000</div><div class="kpi-sub">¥200,000÷40件</div></div>
-        <div class="kpi"><div class="kpi-label">合計想定ROAS</div><div class="kpi-num gr">365.8%</div><div class="kpi-sub">トライアル売上のみ</div></div>
+        <div class="kpi"><div class="kpi-label">通常トライアル予約</div><div class="kpi-num pu">16<span style="font-size:13px">件</span></div><div class="kpi-sub">主軸施策</div></div>
+        <div class="kpi"><div class="kpi-label">合計予約数</div><div class="kpi-num or">18<span style="font-size:13px">件</span></div><div class="kpi-sub">通常16件 + 朝サウナ2件</div></div>
       </div>
-      <div class="nb-pu">✅ 通常トライアル募集はCPAを6月水準でキープし、20件獲得を目標<br>📈 朝サウナトライアルも20件予約獲得を目標に、合計40件を狙う設計<br>📊 LTV売上確定後は、LTV込みROASで追加評価</div>
+      <div class="nb-pu">✅ 7月実績は通常トライアル16件を獲得<br>📌 朝サウナトライアルは2件で終了<br>📊 今後は通常トライアル施策のCPA・売上・LTVを中心に評価</div>
     </div>
     <div class="chart-card">
-      <div class="chart-title">2026年実績・7月提案 広告費 / 広告経由売上</div>
+      <div class="chart-title">5〜7月 通常トライアル予約数 / 広告費</div>
       <canvas id="chart-jul" height="260"></canvas>
     </div>
   </div>
 
-  <div class="sl">前年3月〜7月 / 2026年実績・提案 比較</div>
+  <div class="sl">5〜7月 トライアル施策比較</div>
   <div class="compare-table">
     <div class="compare-grid">
-      <div class="compare-head">
-        <span>項目</span><span>3月</span><span>4月</span><span>5月</span><span>6月</span><span>7月</span>
-      </div>
-      <div class="compare-row">
-        <span>前年 広告費</span><span>¥467,390</span><span>¥467,390</span><span>¥325,165</span><span>¥217,665</span><span>¥239,175</span>
-      </div>
-      <div class="compare-row">
-        <span>前年 広告経由売上</span><span>¥467,390</span><span>¥467,390</span><span>¥325,165</span><span>¥217,665</span><span>¥239,175</span>
-      </div>
-      <div class="compare-row">
-        <span>2026 広告費</span><span>¥110,035</span><span>¥293,000</span><span>¥39,841</span><span>¥85,400</span><span class="focus">¥200,000</span>
-      </div>
-      <div class="compare-row">
-        <span>2026 広告経由売上</span><span>¥521,137</span><span>¥375,218</span><span>¥65,340</span><span>¥413,820</span><span class="focus">¥731,600</span>
-      </div>
-      <div class="compare-row">
-        <span>2026 ROAS</span><span>473.6%</span><span>128.1%</span><span>163.9%</span><span>484.6%</span><span class="focus">365.8%</span>
-      </div>
+      <div class="compare-head"><span>項目</span><span>3〜4月</span><span>5月</span><span>6月</span><span>7月</span><span>備考</span></div>
+      <div class="compare-row"><span>主施策</span><span>朝サウナ</span><span>通常トライアル</span><span>通常トライアル</span><span class="focus">通常トライアル</span><span>今後の主軸</span></div>
+      <div class="compare-row"><span>広告費</span><span>¥403,035</span><span>¥39,841</span><span>¥85,400</span><span class="focus">¥234,111</span><span>7月消化実績</span></div>
+      <div class="compare-row"><span>通常トライアル</span><span>—</span><span>3件</span><span>19件</span><span class="focus">16件</span><span>5〜7月合計 38件</span></div>
+      <div class="compare-row"><span>朝サウナトライアル</span><span>—</span><span>—</span><span>—</span><span class="focus">2件</span><span>施策終了</span></div>
+      <div class="compare-row"><span>通常トライアルCPA</span><span>—</span><span>¥13,280</span><span>¥4,495</span><span class="focus">¥14,632</span><span>売上・LTVと併せて評価</span></div>
     </div>
-    <div class="compare-note">※ 2026年3〜4月の広告経由売上は、現レポート掲載の朝サウナ広告経由売上 ¥896,355 を予約件数比（3月75件 / 4月54件）で按分。7月は6月CPA基準の提案値。</div>
+    <div class="compare-note">※ 7月の通常トライアルCPAは、広告費全体 ¥234,111 を通常トライアル16件で除した参考値。朝サウナトライアル2件は別途参考実績として記載。</div>
   </div>
 
   <div class="pc-grid">
     <div>
-      <div class="sl">7月 提案内訳</div>
+      <div class="sl">7月 実績内訳</div>
       <div class="card mb12">
-        <div class="rr"><span style="color:#555">通常トライアル募集</span><span style="font-weight:800;color:#555">予算 ¥100,000</span></div>
-        <div class="rr"><span class="rr-indent">20件目標 × ¥21,780（6月CPA水準キープ）</span><span class="pu" style="font-weight:700">¥435,600</span></div>
-        <div class="rr"><span style="color:#555">朝サウナトライアル</span><span style="font-weight:800;color:#555">予算 ¥100,000</span></div>
-        <div class="rr"><span class="rr-indent">20件予約目標 × ¥14,800</span><span class="or" style="font-weight:700">¥296,000</span></div>
-        <div class="rr tot"><span style="font-weight:700">合計</span><span style="font-size:12px;color:#16a34a;font-weight:700">40件 / ¥731,600 / ROAS 365.8%</span></div>
+        <div class="rr"><span style="color:#555">広告費消化</span><span style="font-weight:800;color:#555">¥234,111</span></div>
+        <div class="rr"><span style="color:#555">通常トライアル予約</span><span class="pu" style="font-weight:800">16件</span></div>
+        <div class="rr"><span class="rr-indent">参考CPA</span><span class="pu" style="font-weight:700">¥14,632</span></div>
+        <div class="rr"><span style="color:#555">朝サウナトライアル</span><span class="or" style="font-weight:800">2件</span></div>
+        <div class="rr tot"><span style="font-weight:700">合計予約</span><span style="font-size:12px;color:#16a34a;font-weight:700">18件（通常16件 + 朝サウナ2件）</span></div>
       </div>
     </div>
     <div>
       <div class="sl">運用方針</div>
-      <div class="nb-pu">1. 通常トライアル募集は6月CPA水準を維持して20件獲得<br>2. 朝サウナトライアル 1〜2名 ¥14,800は20件予約獲得を目標<br>3. それぞれ10万円ずつ配分し、合計40件の予約目標で運用<br>4. LTV実績が確定次第、8月以降の配分を最適化</div>
+      <div class="nb-pu">1. 朝サウナトライアル施策は7月で終了<br>2. 今後は通常トライアル募集を広告運用の主軸に設定<br>3. 通常トライアルのCPA、売上、その後のLTVで評価<br>4. 7月売上が確定次第、ROASを追記</div>
     </div>
   </div>
 </div><!-- /tab-jul -->
 
-<div class="upd">最終更新: 2026年7月6日</div>
+<div class="upd">最終更新: 2026年8月5日</div>
 </div><!-- /content -->
 
 <script>
@@ -715,26 +763,26 @@ function switchTab(id, btn, activeClass) {
   });
 })();
 
-// 7月提案チャート
-(function(){
-  const ctx = document.getElementById('chart-jul').getContext('2d');
-  new Chart(ctx, {
+// 5〜7月 通常トライアル実績チャート（TOP・7月タブ共通）
+function createTrialTrendChart(canvasId) {
+  const ctx = document.getElementById(canvasId).getContext('2d');
+  return new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['3月', '4月', '5月', '6月', '7月提案'],
+      labels: ['5月', '6月', '7月'],
       datasets: [
         {
-          label: '2026 広告経由売上（万円）',
-          data: [52.11, 37.52, 6.53, 41.38, 73.16],
-          backgroundColor: ['rgba(249,115,22,0.75)', 'rgba(249,115,22,0.75)', 'rgba(139,92,246,0.65)', 'rgba(139,92,246,0.85)', 'rgba(22,163,74,0.85)'],
-          borderColor: ['#f97316', '#f97316', '#8b5cf6', '#8b5cf6', '#16a34a'],
+          label: '通常トライアル予約',
+          data: [3, 19, 16],
+          backgroundColor: ['rgba(139,92,246,0.55)', 'rgba(139,92,246,0.75)', 'rgba(139,92,246,0.95)'],
+          borderColor: ['#8b5cf6', '#8b5cf6', '#8b5cf6'],
           borderWidth: 1.5,
           borderRadius: 8,
           yAxisID: 'y'
         },
         {
-          label: '2026 広告費（万円）',
-          data: [11.0, 29.3, 3.98, 8.54, 20.0],
+          label: '広告費（万円）',
+          data: [3.9841, 8.54, 23.4111],
           type: 'line',
           borderColor: '#9ca3af',
           backgroundColor: 'rgba(156,163,175,0.1)',
@@ -750,16 +798,18 @@ function switchTab(id, btn, activeClass) {
       responsive: true,
       plugins: {
         legend: { display: true, position: 'bottom', labels: { font: { size: 11 }, boxWidth: 12, padding: 16 } },
-        tooltip: { callbacks: { label: c => c.datasetIndex === 0 ? `¥${(c.parsed.y * 10000).toLocaleString()}` : `広告費 ¥${(c.parsed.y * 10000).toLocaleString()}` } }
+        tooltip: { callbacks: { label: c => c.datasetIndex === 0 ? `${c.parsed.y}件` : `広告費 ¥${Math.round(c.parsed.y * 10000).toLocaleString()}` } }
       },
       scales: {
-        y: { beginAtZero: true, max: 100, ticks: { stepSize: 20, font: { size: 11 }, callback: v => `¥${v}万` }, grid: { color: 'rgba(0,0,0,.05)' }, title: { display: true, text: '売上', font: { size: 10 } } },
-        y2: { position: 'right', beginAtZero: true, max: 30, ticks: { font: { size: 11 }, callback: v => `¥${v}万` }, grid: { display: false }, title: { display: true, text: '広告費', font: { size: 10 } } },
+        y: { beginAtZero: true, max: 25, ticks: { stepSize: 5, font: { size: 11 } }, grid: { color: 'rgba(0,0,0,.05)' }, title: { display: true, text: '予約数', font: { size: 10 } } },
+        y2: { position: 'right', beginAtZero: true, max: 25, ticks: { stepSize: 5, font: { size: 11 }, callback: v => `¥${v}万` }, grid: { display: false }, title: { display: true, text: '広告費', font: { size: 10 } } },
         x: { ticks: { font: { size: 12 } }, grid: { display: false } }
       }
     }
   });
-})();
+}
+createTrialTrendChart('chart-summary');
+createTrialTrendChart('chart-jul');
 </script>
 </body>
 </html>
