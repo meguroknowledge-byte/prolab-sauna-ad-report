@@ -181,7 +181,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
     <div class="header-title">🧖 プロラボサウナ 広告レポート</div>
     <div class="header-sub">Meta広告運用 ／ 2026年3月〜</div>
     <div class="tab-strip">
-      <button class="tab-btn active-pu" onclick="switchTab('summary',this,'active-pu')">
+      <button class="tab-btn" onclick="switchTab('summary',this,'active-pu')">
         📊 全体サマリー
         <span class="tab-sub" style="color:#a78bfa">3月〜9月</span>
       </button>
@@ -205,7 +205,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
         💳 トライアル募集
         <span class="tab-sub">8月</span>
       </button>
-      <button class="tab-btn" onclick="switchTab('sep',this,'active-pu')">
+      <button class="tab-btn active-pu" onclick="switchTab('sep',this,'active-pu')">
         💳 トライアル募集
         <span class="tab-sub">9月</span>
       </button>
@@ -216,13 +216,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
 <div class="content">
 
 <!-- ===== TAB 1: 3〜9月 全体サマリー ===== -->
-<div class="tab-pane active" id="tab-summary">
+<div class="tab-pane" id="tab-summary">
   <div class="phase-badge-pu">2026年3月〜9月 実績サマリー</div>
 
   <div class="pc-grid-4 mb16">
     <div class="kpi"><div class="kpi-label">3〜4月 全体売上</div><div class="kpi-num sm bl">¥1,017,945</div><div class="kpi-sub">目標 100万円 / 101.8%</div></div>
     <div class="kpi"><div class="kpi-label">3〜4月 全体予約</div><div class="kpi-num or">216<span style="font-size:13px">名</span></div><div class="kpi-sub">目標 200名 / 108.0%</div></div>
-    <div class="kpi"><div class="kpi-label">9月 推定広告経由売上</div><div class="kpi-num pu">¥598,693</div><div class="kpi-sub">推定22件 × 約¥27,213</div></div>
+    <div class="kpi"><div class="kpi-label">9月 推定広告経由売上</div><div class="kpi-num pu">¥479,160</div><div class="kpi-sub">推定22件 × ¥21,780</div></div>
     <div class="kpi"><div class="kpi-label">9月 広告費消化</div><div class="kpi-num sm gy">¥119,436</div><div class="kpi-sub">2026/9/1〜9/30</div></div>
   </div>
 
@@ -234,9 +234,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
       <div class="compare-row"><span>広告費</span><span>¥403,035</span><span>¥39,841</span><span>¥85,400</span><span>¥234,111</span><span>¥127,577</span><span class="focus">¥119,436</span><span>¥1,009,400</span></div>
       <div class="compare-row"><span>予約・申込</span><span>129件（広告経由）</span><span>3件</span><span>19件</span><span>16件</span><span>21件</span><span class="focus">推定22件</span><span>9月は推定値</span></div>
       <div class="compare-row"><span>前年広告費</span><span>—</span><span>—</span><span>—</span><span>—</span><span>¥234,035</span><span class="focus">—</span><span>8月のみ比較済み</span></div>
-      <div class="compare-row"><span>広告経由売上</span><span>¥1,017,945（全体）</span><span>¥65,340</span><span>¥413,820</span><span>¥378,080</span><span>¥571,480</span><span class="focus">推定 ¥598,693</span><span>8月の1件単価で算出</span></div>
+      <div class="compare-row"><span>広告経由売上</span><span>¥1,017,945（全体）</span><span>¥65,340</span><span>¥413,820</span><span>¥378,080</span><span>¥571,480</span><span class="focus">推定 ¥479,160</span><span>メニュー価格で算出</span></div>
     </div>
-    <div class="compare-note">※ 9月のMeta広告マネージャー上の「登録完了」は58件です。8月の採用率（21件 ÷ 56件 = 37.5%）を暫定適用し、9月は推定22件としています。売上は8月の実績（¥571,480 ÷ 21件 ≒ ¥27,213/件）を用いて推定¥598,693としています。調整根拠は未確認のため確定値ではありません。</div>
+    <div class="compare-note">※ 9月のMeta広告マネージャー上の「登録完了」は58件です。8月の採用率（21件 ÷ 56件 = 37.5%）を暫定適用し、9月は推定22件としています。売上はトライアルメニュー価格（¥21,780/件）を用いて推定¥479,160としています。調整根拠は未確認のため確定値ではありません。</div>
   </div>
 
   <div class="pc-grid">
@@ -246,7 +246,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
     </div>
     <div>
       <div class="sl" style="margin-top:0">9月の記録</div>
-      <div class="nb-pu">✅ Meta広告マネージャー上の登録完了：58件<br>📌 暫定採用値：推定22件（8月の採用率37.5%を適用）<br>💳 推定広告経由売上：¥598,693（8月の1件単価 約¥27,213を適用）<br>🗓 集計期間：2026/9/1〜9/30</div>
+      <div class="nb-pu">✅ Meta広告マネージャー上の登録完了：58件<br>📌 暫定採用値：推定22件（8月の採用率37.5%を適用）<br>💳 推定広告経由売上：¥479,160（22件 × ¥21,780）<br>🗓 集計期間：2026/9/1〜9/30</div>
     </div>
   </div>
 </div><!-- /tab-summary -->
@@ -702,7 +702,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
 </div><!-- /tab-aug -->
 
 <!-- ===== TAB 7: 9月 トライアル募集 ===== -->
-<div class="tab-pane" id="tab-sep">
+<div class="tab-pane active" id="tab-sep">
   <div class="phase-badge-pu">9月実績（トライアル募集）</div>
 
   <div class="hero-may">
@@ -720,8 +720,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
       </div>
       <div class="hero-block">
         <div class="hero-lbl" style="color:#a78bfa">推定広告経由売上</div>
-        <div><span class="hero-num" style="color:#34d399;font-size:40px">¥598,693</span></div>
-        <div class="hero-hint" style="color:#7c3aed">22件 × 約¥27,213</div>
+        <div><span class="hero-num" style="color:#34d399;font-size:40px">¥479,160</span></div>
+        <div class="hero-hint" style="color:#7c3aed">22件 × ¥21,780</div>
       </div>
     </div>
   </div>
@@ -731,14 +731,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
     <div style="display:flex;flex-direction:column;gap:12px">
       <div class="pc-grid" style="gap:12px">
         <div class="kpi"><div class="kpi-label">広告費</div><div class="kpi-num sm gy">¥119,436</div><div class="kpi-sub">9月消化実績</div></div>
-        <div class="kpi"><div class="kpi-label">推定広告経由売上</div><div class="kpi-num pu">¥598,693</div><div class="kpi-sub">22件 × 約¥27,213</div></div>
+        <div class="kpi"><div class="kpi-label">推定広告経由売上</div><div class="kpi-num pu">¥479,160</div><div class="kpi-sub">22件 × ¥21,780</div></div>
         <div class="kpi" style="grid-column:1 / -1"><div class="kpi-label">推定広告経由CPA</div><div class="kpi-num pu">¥5,429</div><div class="kpi-sub">¥119,436 ÷ 22件</div></div>
       </div>
-      <div class="nb-pu">✅ Meta広告マネージャーの「登録完了」結果：58件<br>📌 暫定採用値：推定22件（8月の採用率37.5%を適用）<br>💳 推定広告経由売上：¥598,693（8月の1件単価 約¥27,213を適用）<br>📊 推定広告経由CPA：¥5,429（¥119,436 ÷ 22件）<br>📊 推定ROAS：501.3%<br>※ 8月の調整根拠が未確認のため、9月も確定値ではありません。</div>
+      <div class="nb-pu">✅ Meta広告マネージャーの「登録完了」結果：58件<br>📌 暫定採用値：推定22件（8月の採用率37.5%を適用）<br>💳 推定広告経由売上：¥479,160（22件 × ¥21,780）<br>📊 推定広告経由CPA：¥5,429（¥119,436 ÷ 22件）<br>📊 推定ROAS：401.2%<br>※ 8月の調整根拠が未確認のため、9月も確定値ではありません。</div>
     </div>
     <div class="chart-card">
       <div class="chart-title">5〜9月 広告経由予約数（9月は推定） / 広告費</div>
-      <canvas id="chart-sep" height="0" style="display: block; box-sizing: border-box; height: 0px; width: 0px;" width="0"></canvas>
+      <canvas id="chart-sep" height="786" style="display: block; box-sizing: border-box; height: 393px; width: 524px;" width="1048"></canvas>
     </div>
   </div>
 
@@ -748,9 +748,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
       <div class="compare-head"><span>項目</span><span>3〜4月</span><span>5月</span><span>6月</span><span>7月</span><span>8月</span><span>9月</span><span>備考</span></div>
       <div class="compare-row"><span>広告費</span><span>¥403,035</span><span>¥39,841</span><span>¥85,400</span><span>¥234,111</span><span>¥127,577</span><span class="focus">¥119,436</span><span>9月消化実績</span></div>
       <div class="compare-row"><span>広告経由予約</span><span>—</span><span>3件</span><span>19件</span><span>16件</span><span>21件</span><span class="focus">推定22件</span><span>9月は暫定採用値</span></div>
-      <div class="compare-row"><span>広告経由売上</span><span>—</span><span>¥65,340</span><span>¥413,820</span><span>¥378,080</span><span>¥571,480</span><span class="focus">推定 ¥598,693</span><span>8月の1件単価で算出</span></div>
+      <div class="compare-row"><span>広告経由売上</span><span>—</span><span>¥65,340</span><span>¥413,820</span><span>¥378,080</span><span>¥571,480</span><span class="focus">推定 ¥479,160</span><span>メニュー価格で算出</span></div>
     </div>
-    <div class="compare-note">※ Meta広告マネージャー上の9月「登録完了」は58件です。8月の採用率37.5%を暫定適用した推定22件に、8月の1件単価（¥571,480 ÷ 21件 ≒ ¥27,213）を適用して売上を算出しています。確定値ではありません。</div>
+    <div class="compare-note">※ Meta広告マネージャー上の9月「登録完了」は58件です。8月の採用率37.5%を暫定適用した推定22件に、トライアルメニュー価格（¥21,780/件）を適用して売上を算出しています。確定値ではありません。</div>
   </div>
 
   <div class="sl">クリエイティブ別パフォーマンス（経過観察）</div>
