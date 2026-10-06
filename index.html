@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<script type="application/json" id="cowork-artifact-meta">
+<html lang="ja"><head><script type="application/json" id="cowork-artifact-meta">
 {
   "name": "Prolab Sauna Ad Report",
   "schemaVersion": 1,
   "description": "プロラボサウナ 広告レポート - PC/SP両対応レスポンシブ、朝サウナ施策（3-4月）とトライアル募集（5月〜）タブ分け"
 }
 </script>
-<html lang="ja">
-<head>
+
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>プロラボサウナ 広告レポート</title>
@@ -105,8 +104,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
 .compare-table { background: #fff; border-radius: 14px; box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow-x: auto; margin-bottom: 16px; }
 .compare-grid { min-width: 760px; }
 .compare-grid-wide { min-width: 900px; }
+.compare-grid-wider { min-width: 1040px; }
 .compare-head, .compare-row { display: grid; grid-template-columns: 140px repeat(5, 1fr); align-items: center; }
 .compare-grid-wide .compare-head, .compare-grid-wide .compare-row { grid-template-columns: 140px repeat(6, 1fr); }
+.compare-grid-wider .compare-head, .compare-grid-wider .compare-row { grid-template-columns: 140px repeat(7, 1fr); }
 .compare-head { background: #f9f9f9; border-bottom: 1px solid #f0f0f0; color: #aaa; font-size: 10px; font-weight: 700; letter-spacing: .5px; }
 .compare-head span, .compare-row span { padding: 11px 12px; text-align: right; }
 .compare-head span:first-child, .compare-row span:first-child { text-align: left; color: #555; font-weight: 700; }
@@ -168,7 +169,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
     <div class="tab-strip">
       <button class="tab-btn active-pu" onclick="switchTab('summary',this,'active-pu')">
         📊 全体サマリー
-        <span class="tab-sub" style="color:#a78bfa">3月〜8月</span>
+        <span class="tab-sub" style="color:#a78bfa">3月〜9月</span>
       </button>
       <button class="tab-btn" onclick="switchTab('asa',this,'active-or')">
         🔥 朝サウナ施策
@@ -190,44 +191,48 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
         💳 トライアル募集
         <span class="tab-sub">8月</span>
       </button>
+      <button class="tab-btn" onclick="switchTab('sep',this,'active-pu')">
+        💳 Meta広告実績
+        <span class="tab-sub">9月</span>
+      </button>
     </div>
   </div>
 </div>
 
 <div class="content">
 
-<!-- ===== TAB 1: 3〜8月 全体サマリー ===== -->
+<!-- ===== TAB 1: 3〜9月 全体サマリー ===== -->
 <div class="tab-pane active" id="tab-summary">
-  <div class="phase-badge-pu">2026年3月〜8月 実績サマリー</div>
+  <div class="phase-badge-pu">2026年3月〜9月 実績サマリー</div>
 
   <div class="pc-grid-4 mb16">
     <div class="kpi"><div class="kpi-label">3〜4月 全体売上</div><div class="kpi-num sm bl">¥1,017,945</div><div class="kpi-sub">目標 100万円 / 101.8%</div></div>
     <div class="kpi"><div class="kpi-label">3〜4月 全体予約</div><div class="kpi-num or">216<span style="font-size:13px">名</span></div><div class="kpi-sub">目標 200名 / 108.0%</div></div>
-    <div class="kpi"><div class="kpi-label">8月 Meta広告経由予約</div><div class="kpi-num pu">21<span style="font-size:13px">件</span></div><div class="kpi-sub">CPA ¥6,075</div></div>
-    <div class="kpi"><div class="kpi-label">8月 広告費消化</div><div class="kpi-num sm gy">¥127,577</div><div class="kpi-sub">前年同月 ¥234,035 / 前年比 -45.5%</div></div>
+    <div class="kpi"><div class="kpi-label">9月 登録完了（Meta管理画面）</div><div class="kpi-num pu">58<span style="font-size:13px">件</span></div><div class="kpi-sub">CPA ¥2,059</div></div>
+    <div class="kpi"><div class="kpi-label">9月 広告費消化</div><div class="kpi-num sm gy">¥119,436</div><div class="kpi-sub">2026/9/1〜9/30</div></div>
   </div>
 
   <div class="sl">月別・施策別実績</div>
   <div class="compare-table">
-    <div class="compare-grid compare-grid-wide">
-      <div class="compare-head"><span>項目</span><span>3〜4月</span><span>5月</span><span>6月</span><span>7月</span><span>8月</span><span>合計/補足</span></div>
-      <div class="compare-row"><span>主施策</span><span>朝サウナ</span><span>トライアル</span><span>トライアル</span><span>トライアル</span><span class="focus">トライアル</span><span>通常施策へ集約</span></div>
-      <div class="compare-row"><span>広告費</span><span>¥403,035</span><span>¥39,841</span><span>¥85,400</span><span>¥234,111</span><span class="focus">¥127,577</span><span>¥889,964</span></div>
-      <div class="compare-row"><span>予約・申込</span><span>129件（広告経由）</span><span>3件</span><span>19件</span><span>16件</span><span class="focus">21件</span><span>Meta管理画面結果</span></div>
-      <div class="compare-row"><span>前年広告費</span><span>—</span><span>—</span><span>—</span><span>—</span><span class="focus">¥234,035</span><span>前年比 -45.5%</span></div>
-      <div class="compare-row"><span>広告経由売上</span><span>¥1,017,945（全体）</span><span>¥65,340</span><span>¥413,820</span><span>¥378,080</span><span class="focus">¥571,480</span><span>ROAS 447.9%</span></div>
+    <div class="compare-grid compare-grid-wider">
+      <div class="compare-head"><span>項目</span><span>3〜4月</span><span>5月</span><span>6月</span><span>7月</span><span>8月</span><span>9月</span><span>合計/補足</span></div>
+      <div class="compare-row"><span>主施策</span><span>朝サウナ</span><span>トライアル</span><span>トライアル</span><span>トライアル</span><span>トライアル</span><span class="focus">Meta広告</span><span>通常施策へ集約</span></div>
+      <div class="compare-row"><span>広告費</span><span>¥403,035</span><span>¥39,841</span><span>¥85,400</span><span>¥234,111</span><span>¥127,577</span><span class="focus">¥119,436</span><span>¥1,009,400</span></div>
+      <div class="compare-row"><span>予約・申込</span><span>129件（広告経由）</span><span>3件</span><span>19件</span><span>16件</span><span>21件</span><span class="focus">登録完了 58件</span><span>9月はMeta管理画面結果</span></div>
+      <div class="compare-row"><span>前年広告費</span><span>—</span><span>—</span><span>—</span><span>—</span><span>¥234,035</span><span class="focus">—</span><span>8月のみ比較済み</span></div>
+      <div class="compare-row"><span>広告経由売上</span><span>¥1,017,945（全体）</span><span>¥65,340</span><span>¥413,820</span><span>¥378,080</span><span>¥571,480</span><span class="focus">—</span><span>9月は未入力</span></div>
     </div>
-    <div class="compare-note">※ 8月はMeta管理画面結果21件。LTV込み売上は広告経由売上 ¥571,480 + LTV売上 ¥34,740 = ¥606,220。</div>
+    <div class="compare-note">※ 9月の登録完了58件は、Meta広告マネージャーで表示された「登録完了」の結果です。9月の売上・ROAS・LTVは今回未入力です。</div>
   </div>
 
   <div class="pc-grid">
     <div class="chart-card">
-      <div class="chart-title">5〜8月 通常トライアル予約数 / 広告費</div>
-      <canvas id="chart-summary" height="220"></canvas>
+      <div class="chart-title">5〜9月 登録完了数 / 広告費</div>
+      <canvas id="chart-summary" height="768" width="1048" style="display: block; box-sizing: border-box; height: 384px; width: 524px;"></canvas>
     </div>
     <div>
-      <div class="sl" style="margin-top:0">7月以降の運用方針</div>
-      <div class="nb-pu">✅ 8月Meta広告経由予約 21件 / CPA ¥6,075<br>💳 広告経由売上 ¥571,480 / ROAS 447.9%<br>📊 LTV売上 ¥34,740 / LTV込み売上 ¥606,220<br>🔎 広告費は前年同月比 -45.5%</div>
+      <div class="sl" style="margin-top:0">9月の記録</div>
+      <div class="nb-pu">✅ Meta広告マネージャー上の登録完了：58件<br>💳 広告費：¥119,436<br>📊 CPA：¥2,059<br>🗓 集計期間：2026/9/1〜9/30</div>
     </div>
   </div>
 </div><!-- /tab-summary -->
@@ -315,7 +320,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
   <div class="pc-grid mb16">
     <div class="chart-card">
       <div class="chart-title">朝サウナ予約件数・広告費 月別比較</div>
-      <canvas id="chart-asa" height="180"></canvas>
+      <canvas id="chart-asa" height="0" style="display: block; box-sizing: border-box; height: 0px; width: 0px;" width="0"></canvas>
     </div>
     <div style="display:flex;flex-direction:column;gap:12px">
       <div class="pc-grid" style="gap:12px">
@@ -434,7 +439,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
     </div>
     <div class="chart-card">
       <div class="chart-title">会員募集 トライアル申込・広告費 月別</div>
-      <canvas id="chart-may" height="260"></canvas>
+      <canvas id="chart-may" height="0" style="display: block; box-sizing: border-box; height: 0px; width: 0px;" width="0"></canvas>
     </div>
   </div>
 
@@ -512,7 +517,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
     </div>
     <div class="chart-card">
       <div class="chart-title">会員募集 トライアル申込・広告費 月別</div>
-      <canvas id="chart-jun" height="260"></canvas>
+      <canvas id="chart-jun" height="0" style="display: block; box-sizing: border-box; height: 0px; width: 0px;" width="0"></canvas>
     </div>
   </div>
 
@@ -586,7 +591,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
     </div>
     <div class="chart-card">
       <div class="chart-title">5〜7月 通常トライアル予約数 / 広告費</div>
-      <canvas id="chart-jul" height="260"></canvas>
+      <canvas id="chart-jul" height="0" style="display: block; box-sizing: border-box; height: 0px; width: 0px;" width="0"></canvas>
     </div>
   </div>
 
@@ -663,7 +668,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
     </div>
     <div class="chart-card">
       <div class="chart-title">5〜8月 通常トライアル予約数 / 広告費</div>
-      <canvas id="chart-aug" height="260"></canvas>
+      <canvas id="chart-aug" height="0" style="display: block; box-sizing: border-box; height: 0px; width: 0px;" width="0"></canvas>
     </div>
   </div>
 
@@ -682,7 +687,59 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
   </div>
 </div><!-- /tab-aug -->
 
-<div class="upd">最終更新: 2026年9月10日</div>
+<!-- ===== TAB 7: 9月 Meta広告実績 ===== -->
+<div class="tab-pane" id="tab-sep">
+  <div class="phase-badge-pu">9月実績（Meta広告）</div>
+
+  <div class="hero-may">
+    <div style="font-size:10px;color:#a78bfa;margin-bottom:14px;font-weight:700;letter-spacing:.8px">2026年9月 広告運用実績</div>
+    <div class="hero-row">
+      <div class="hero-block">
+        <div class="hero-lbl" style="color:#a78bfa">広告費消化</div>
+        <div><span class="hero-num" style="color:#fff;font-size:40px">¥119,436</span></div>
+        <div class="hero-hint" style="color:#7c3aed">2026/9/1〜9/30</div>
+      </div>
+      <div class="hero-block">
+        <div class="hero-lbl" style="color:#a78bfa">登録完了</div>
+        <div><span class="hero-num" style="color:#c4b5fd">58</span><span class="hero-unit" style="color:#c4b5fd">件</span></div>
+        <div class="hero-hint" style="color:#7c3aed">Meta管理画面結果</div>
+      </div>
+      <div class="hero-block">
+        <div class="hero-lbl" style="color:#a78bfa">CPA</div>
+        <div><span class="hero-num" style="color:#34d399;font-size:40px">¥2,059</span></div>
+        <div class="hero-hint" style="color:#7c3aed">¥119,436 ÷ 58件</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sl">9月 広告KPI</div>
+  <div class="pc-grid mb16">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="pc-grid" style="gap:12px">
+        <div class="kpi"><div class="kpi-label">広告費</div><div class="kpi-num sm gy">¥119,436</div><div class="kpi-sub">9月消化実績</div></div>
+        <div class="kpi"><div class="kpi-label">登録完了 CPA</div><div class="kpi-num pu">¥2,059</div><div class="kpi-sub">¥119,436 ÷ 58件</div></div>
+      </div>
+      <div class="nb-pu">✅ Meta広告マネージャーの「登録完了」結果：58件<br>💳 広告費：¥119,436<br>📊 CPA：¥2,059<br>※ 売上・ROAS・LTVは今回未入力です。</div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">5〜9月 登録完了数 / 広告費</div>
+      <canvas id="chart-sep" height="0" style="display: block; box-sizing: border-box; height: 0px; width: 0px;" width="0"></canvas>
+    </div>
+  </div>
+
+  <div class="sl">5〜9月 トライアル施策比較</div>
+  <div class="compare-table">
+    <div class="compare-grid compare-grid-wider">
+      <div class="compare-head"><span>項目</span><span>3〜4月</span><span>5月</span><span>6月</span><span>7月</span><span>8月</span><span>9月</span><span>備考</span></div>
+      <div class="compare-row"><span>広告費</span><span>¥403,035</span><span>¥39,841</span><span>¥85,400</span><span>¥234,111</span><span>¥127,577</span><span class="focus">¥119,436</span><span>9月消化実績</span></div>
+      <div class="compare-row"><span>Meta管理画面結果</span><span>—</span><span>3件</span><span>19件</span><span>16件</span><span>21件</span><span class="focus">登録完了 58件</span><span>9月は「登録完了」</span></div>
+      <div class="compare-row"><span>CPA</span><span>—</span><span>¥13,280</span><span>¥4,495</span><span>¥14,632</span><span>¥6,075</span><span class="focus">¥2,059</span><span>広告費 ÷ 結果</span></div>
+    </div>
+    <div class="compare-note">※ 9月の「登録完了」は、Meta広告マネージャーで表示された結果数です。</div>
+  </div>
+</div><!-- /tab-sep -->
+
+<div class="upd">最終更新: 2026年10月6日</div>
 </div><!-- /content -->
 
 <script>
@@ -832,18 +889,22 @@ function switchTab(id, btn, activeClass) {
 })();
 
 // 通常トライアル実績チャート
-function createTrialTrendChart(canvasId, includeAugust) {
+function createTrialTrendChart(canvasId, period) {
   const ctx = document.getElementById(canvasId).getContext('2d');
-  const labels = includeAugust ? ['5月', '6月', '7月', '8月'] : ['5月', '6月', '7月'];
-  const reservations = includeAugust ? [3, 19, 16, 21] : [3, 19, 16];
-  const spend = includeAugust ? [3.9841, 8.54, 23.4111, 12.7577] : [3.9841, 8.54, 23.4111];
+  const allLabels = ['5月', '6月', '7月', '8月', '9月'];
+  const allResults = [3, 19, 16, 21, 58];
+  const allSpend = [3.9841, 8.54, 23.4111, 12.7577, 11.9436];
+  const points = period === 'sep' ? 5 : period === 'aug' ? 4 : 3;
+  const labels = allLabels.slice(0, points);
+  const reservations = allResults.slice(0, points);
+  const spend = allSpend.slice(0, points);
   return new Chart(ctx, {
     type: 'bar',
     data: {
       labels,
       datasets: [
         {
-          label: includeAugust ? 'Meta管理画面結果' : '通常トライアル予約',
+          label: period === 'jul' ? '通常トライアル予約' : 'Meta管理画面結果',
           data: reservations,
           backgroundColor: labels.map((_, i) => `rgba(139,92,246,${0.5 + i * 0.15})`),
           borderColor: labels.map(() => '#8b5cf6'),
@@ -872,16 +933,18 @@ function createTrialTrendChart(canvasId, includeAugust) {
         tooltip: { callbacks: { label: c => c.datasetIndex === 0 ? `${c.parsed.y}件` : `広告費 ¥${Math.round(c.parsed.y * 10000).toLocaleString()}` } }
       },
       scales: {
-        y: { beginAtZero: true, max: 25, ticks: { stepSize: 5, font: { size: 11 } }, grid: { color: 'rgba(0,0,0,.05)' }, title: { display: true, text: '予約数', font: { size: 10 } } },
+        y: { beginAtZero: true, max: period === 'sep' ? 60 : 25, ticks: { stepSize: period === 'sep' ? 10 : 5, font: { size: 11 } }, grid: { color: 'rgba(0,0,0,.05)' }, title: { display: true, text: '件数', font: { size: 10 } } },
         y2: { position: 'right', beginAtZero: true, max: 25, ticks: { stepSize: 5, font: { size: 11 }, callback: v => `¥${v}万` }, grid: { display: false }, title: { display: true, text: '広告費', font: { size: 10 } } },
         x: { ticks: { font: { size: 12 } }, grid: { display: false } }
       }
     }
   });
 }
-createTrialTrendChart('chart-summary', true);
-createTrialTrendChart('chart-jul', false);
-createTrialTrendChart('chart-aug', true);
+createTrialTrendChart('chart-summary', 'sep');
+createTrialTrendChart('chart-jul', 'jul');
+createTrialTrendChart('chart-aug', 'aug');
+createTrialTrendChart('chart-sep', 'sep');
 </script>
-</body>
-</html>
+
+
+</body></html>
