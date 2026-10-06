@@ -208,7 +208,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
   <div class="pc-grid-4 mb16">
     <div class="kpi"><div class="kpi-label">3〜4月 全体売上</div><div class="kpi-num sm bl">¥1,017,945</div><div class="kpi-sub">目標 100万円 / 101.8%</div></div>
     <div class="kpi"><div class="kpi-label">3〜4月 全体予約</div><div class="kpi-num or">216<span style="font-size:13px">名</span></div><div class="kpi-sub">目標 200名 / 108.0%</div></div>
-    <div class="kpi"><div class="kpi-label">9月 登録完了（Meta管理画面）</div><div class="kpi-num pu">58<span style="font-size:13px">件</span></div><div class="kpi-sub">CPA ¥2,059</div></div>
+    <div class="kpi"><div class="kpi-label">9月 推定広告経由売上</div><div class="kpi-num pu">¥479,160</div><div class="kpi-sub">推定22件 × ¥21,780</div></div>
     <div class="kpi"><div class="kpi-label">9月 広告費消化</div><div class="kpi-num sm gy">¥119,436</div><div class="kpi-sub">2026/9/1〜9/30</div></div>
   </div>
 
@@ -218,21 +218,21 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
       <div class="compare-head"><span>項目</span><span>3〜4月</span><span>5月</span><span>6月</span><span>7月</span><span>8月</span><span>9月</span><span>合計/補足</span></div>
       <div class="compare-row"><span>主施策</span><span>朝サウナ</span><span>トライアル</span><span>トライアル</span><span>トライアル</span><span>トライアル</span><span class="focus">Meta広告</span><span>通常施策へ集約</span></div>
       <div class="compare-row"><span>広告費</span><span>¥403,035</span><span>¥39,841</span><span>¥85,400</span><span>¥234,111</span><span>¥127,577</span><span class="focus">¥119,436</span><span>¥1,009,400</span></div>
-      <div class="compare-row"><span>予約・申込</span><span>129件（広告経由）</span><span>3件</span><span>19件</span><span>16件</span><span>21件</span><span class="focus">登録完了 58件</span><span>9月はMeta管理画面結果</span></div>
+      <div class="compare-row"><span>予約・申込</span><span>129件（広告経由）</span><span>3件</span><span>19件</span><span>16件</span><span>21件</span><span class="focus">推定22件</span><span>9月は推定値</span></div>
       <div class="compare-row"><span>前年広告費</span><span>—</span><span>—</span><span>—</span><span>—</span><span>¥234,035</span><span class="focus">—</span><span>8月のみ比較済み</span></div>
-      <div class="compare-row"><span>広告経由売上</span><span>¥1,017,945（全体）</span><span>¥65,340</span><span>¥413,820</span><span>¥378,080</span><span>¥571,480</span><span class="focus">—</span><span>9月は未入力</span></div>
+      <div class="compare-row"><span>広告経由売上</span><span>¥1,017,945（全体）</span><span>¥65,340</span><span>¥413,820</span><span>¥378,080</span><span>¥571,480</span><span class="focus">推定 ¥479,160</span><span>22件 × ¥21,780</span></div>
     </div>
-    <div class="compare-note">※ 9月の登録完了58件は、Meta広告マネージャーで表示された「登録完了」の結果です。9月の売上・ROAS・LTVは今回未入力です。</div>
+    <div class="compare-note">※ 9月のMeta広告マネージャー上の「登録完了」は58件です。8月の採用率（21件 ÷ 56件 = 37.5%）を暫定適用し、9月は推定22件・推定売上¥479,160（22件 × ¥21,780）としています。調整根拠は未確認のため確定値ではありません。</div>
   </div>
 
   <div class="pc-grid">
     <div class="chart-card">
-      <div class="chart-title">5〜9月 登録完了数 / 広告費</div>
+      <div class="chart-title">5〜9月 広告経由予約数（9月は推定） / 広告費</div>
       <canvas id="chart-summary" height="768" width="1048" style="display: block; box-sizing: border-box; height: 384px; width: 524px;"></canvas>
     </div>
     <div>
       <div class="sl" style="margin-top:0">9月の記録</div>
-      <div class="nb-pu">✅ Meta広告マネージャー上の登録完了：58件<br>💳 広告費：¥119,436<br>📊 CPA：¥2,059<br>🗓 集計期間：2026/9/1〜9/30</div>
+      <div class="nb-pu">✅ Meta広告マネージャー上の登録完了：58件<br>📌 暫定採用値：推定22件（8月の採用率37.5%を適用）<br>💳 推定広告経由売上：¥479,160（22件 × ¥21,780）<br>🗓 集計期間：2026/9/1〜9/30</div>
     </div>
   </div>
 </div><!-- /tab-summary -->
@@ -700,14 +700,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
         <div class="hero-hint" style="color:#7c3aed">2026/9/1〜9/30</div>
       </div>
       <div class="hero-block">
-        <div class="hero-lbl" style="color:#a78bfa">登録完了</div>
-        <div><span class="hero-num" style="color:#c4b5fd">58</span><span class="hero-unit" style="color:#c4b5fd">件</span></div>
-        <div class="hero-hint" style="color:#7c3aed">Meta管理画面結果</div>
+        <div class="hero-lbl" style="color:#a78bfa">推定広告経由予約</div>
+        <div><span class="hero-num" style="color:#c4b5fd">22</span><span class="hero-unit" style="color:#c4b5fd">件</span></div>
+        <div class="hero-hint" style="color:#7c3aed">8月の採用率37.5%を適用</div>
       </div>
       <div class="hero-block">
-        <div class="hero-lbl" style="color:#a78bfa">CPA</div>
-        <div><span class="hero-num" style="color:#34d399;font-size:40px">¥2,059</span></div>
-        <div class="hero-hint" style="color:#7c3aed">¥119,436 ÷ 58件</div>
+        <div class="hero-lbl" style="color:#a78bfa">推定広告経由売上</div>
+        <div><span class="hero-num" style="color:#34d399;font-size:40px">¥479,160</span></div>
+        <div class="hero-hint" style="color:#7c3aed">22件 × ¥21,780</div>
       </div>
     </div>
   </div>
@@ -717,12 +717,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
     <div style="display:flex;flex-direction:column;gap:12px">
       <div class="pc-grid" style="gap:12px">
         <div class="kpi"><div class="kpi-label">広告費</div><div class="kpi-num sm gy">¥119,436</div><div class="kpi-sub">9月消化実績</div></div>
-        <div class="kpi"><div class="kpi-label">登録完了 CPA</div><div class="kpi-num pu">¥2,059</div><div class="kpi-sub">¥119,436 ÷ 58件</div></div>
+        <div class="kpi"><div class="kpi-label">推定広告経由売上</div><div class="kpi-num pu">¥479,160</div><div class="kpi-sub">22件 × ¥21,780</div></div>
       </div>
-      <div class="nb-pu">✅ Meta広告マネージャーの「登録完了」結果：58件<br>💳 広告費：¥119,436<br>📊 CPA：¥2,059<br>※ 売上・ROAS・LTVは今回未入力です。</div>
+      <div class="nb-pu">✅ Meta広告マネージャーの「登録完了」結果：58件<br>📌 暫定採用値：推定22件（8月の採用率37.5%を適用）<br>💳 推定広告経由売上：¥479,160（22件 × ¥21,780）<br>📊 推定ROAS：401.2%<br>※ 8月の調整根拠が未確認のため、9月も確定値ではありません。</div>
     </div>
     <div class="chart-card">
-      <div class="chart-title">5〜9月 登録完了数 / 広告費</div>
+      <div class="chart-title">5〜9月 広告経由予約数（9月は推定） / 広告費</div>
       <canvas id="chart-sep" height="0" style="display: block; box-sizing: border-box; height: 0px; width: 0px;" width="0"></canvas>
     </div>
   </div>
@@ -732,10 +732,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Goth
     <div class="compare-grid compare-grid-wider">
       <div class="compare-head"><span>項目</span><span>3〜4月</span><span>5月</span><span>6月</span><span>7月</span><span>8月</span><span>9月</span><span>備考</span></div>
       <div class="compare-row"><span>広告費</span><span>¥403,035</span><span>¥39,841</span><span>¥85,400</span><span>¥234,111</span><span>¥127,577</span><span class="focus">¥119,436</span><span>9月消化実績</span></div>
-      <div class="compare-row"><span>Meta管理画面結果</span><span>—</span><span>3件</span><span>19件</span><span>16件</span><span>21件</span><span class="focus">登録完了 58件</span><span>9月は「登録完了」</span></div>
-      <div class="compare-row"><span>CPA</span><span>—</span><span>¥13,280</span><span>¥4,495</span><span>¥14,632</span><span>¥6,075</span><span class="focus">¥2,059</span><span>広告費 ÷ 結果</span></div>
+      <div class="compare-row"><span>広告経由予約</span><span>—</span><span>3件</span><span>19件</span><span>16件</span><span>21件</span><span class="focus">推定22件</span><span>9月は暫定採用値</span></div>
+      <div class="compare-row"><span>広告経由売上</span><span>—</span><span>¥65,340</span><span>¥413,820</span><span>¥378,080</span><span>¥571,480</span><span class="focus">推定 ¥479,160</span><span>22件 × ¥21,780</span></div>
     </div>
-    <div class="compare-note">※ 9月の「登録完了」は、Meta広告マネージャーで表示された結果数です。</div>
+    <div class="compare-note">※ Meta広告マネージャー上の9月「登録完了」は58件です。8月の採用率37.5%を暫定適用した推定22件で売上を算出しています。確定値ではありません。</div>
   </div>
 </div><!-- /tab-sep -->
 
@@ -892,7 +892,7 @@ function switchTab(id, btn, activeClass) {
 function createTrialTrendChart(canvasId, period) {
   const ctx = document.getElementById(canvasId).getContext('2d');
   const allLabels = ['5月', '6月', '7月', '8月', '9月'];
-  const allResults = [3, 19, 16, 21, 58];
+  const allResults = [3, 19, 16, 21, 22];
   const allSpend = [3.9841, 8.54, 23.4111, 12.7577, 11.9436];
   const points = period === 'sep' ? 5 : period === 'aug' ? 4 : 3;
   const labels = allLabels.slice(0, points);
